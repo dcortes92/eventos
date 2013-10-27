@@ -9,7 +9,7 @@ App::uses('Security', 'Utility');
 
 class User extends AppModel{
 	/*The display field makes the name of the user visible instead of the id*/
-	public $displayField = 'lastname'; /*shows the firstname only, if you whant 
+	public $displayField = 'firstname'; /*shows the firstname only, if you whant 
 				first + last name search for virtualfield*/
 
 	/*Asossiation with Products*/
