@@ -1,5 +1,7 @@
 <?php
 
+App::uses('Security', 'Utility');
+
 class UsersController extends AppController{
 	public function index()
 	{
@@ -37,7 +39,7 @@ class UsersController extends AppController{
 
 			//2. Magical Find
 			$user = $this->User->findByEmailAndPassword( $this->request->data('User.email'), 
-														 $this->request->data('User.password'));
+														 Security::hash($this->request->data('User.password'), 'sha1', true) );
 
 			//debug($user);
 

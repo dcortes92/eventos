@@ -13,14 +13,14 @@ class User extends AppModel{
 				first + last name search for virtualfield*/
 
 	/*Asossiation with Products*/
-	public $hasMany = array(
+	/*public $hasMany = array(
 		'Product'
-	);
+	);*/
 
 	public $validate = array(
-		'firstname' => array(
+		'name' => array(
 				'rule' => 'notEmpty',
-				'message' => 'Please fill in the first name'
+				'message' => 'Please fill in the name'
 		),
 		'lastname' => array(
 				'rule' => 'notEmpty',
@@ -29,6 +29,10 @@ class User extends AppModel{
 		'email' => array(
 				'rule' => 'email',
 				'message' => 'Please fill a valid email address'
+		),
+		'username' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Please fill in the user name'
 		),
 		'password' => array(
 				'rule' => array('between', 5, 10),
