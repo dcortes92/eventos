@@ -14,6 +14,7 @@ class UsersController extends AppController{
 
 	public function add()
 	{
+		$this->set('title_for_layout', 'Eventos - Registrar Usuario');
 		if( $this->request->is('post') )
 		{
 			/*Saves the user info to the database, the model validates the input*/
