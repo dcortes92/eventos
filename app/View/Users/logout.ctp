@@ -1,0 +1,1 @@
+<h2>Sesi&oacute;n cerrada, redireccionando...</h2>

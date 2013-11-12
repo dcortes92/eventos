@@ -49,17 +49,38 @@ class UsersController extends AppController{
 			{
 				$this->Session->write('User', $user);
 				$this->redirect(array(
-					'controller' => 'home',
-					'action' => 'index'
+					'controller' => 'users',
+					'action' => 'uprofile'
 				));
-			}
+			}			
 
-			/*
-				Finalizar la sesion
-				session_destroy();
-			*/
+			$this->Session->setFlash('Correo y/o contrase&ntilde;a incorrectos');
+		}
+	}
 
-			$this->Session->setFlash('Email and password combination are not correct');
+	/*Destroys session*/
+	public function logout()
+	{
+		$this->Session->destroy();
+		$this->redirect(array('controller' => 'home', 'action' => 'index'));
+	}
+
+	/*Once the user has logged in, his menu is loaded*/
+	public function uprofile()
+	{
+		$this->layout = 'user';		
+	}
+
+	/*Privacy*/
+	/*Protect views that only a valid user can access*/
+	public function beforeFilter() {
+		parent::beforeFilter();
+
+		if( $this->request->action != 'login' && !$this->Session->check('User') ){
+			$this->redirect(array(
+				'controller' => 'users',
+				'action' => 'login'
+			));
 		}
 	}
 }
