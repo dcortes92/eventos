@@ -105,6 +105,36 @@ class UsersController extends AppController{
 		$this->layout = 'user';
 	}
 
+	/*Edit de user*/
+	public function edituser($id = null)
+	{
+		$this->set('title_for_layout', 'Business Meeting - Actualizar informacion');
+
+		$temp = $this->Session->read('User');
+		if(intval($temp['User']['user_type']) == 1)
+			$this->layout = 'admin';
+		else
+			$this->layout = 'user';
+
+		$this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Usuario incorrecto'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash('Su información se ha actualizado', 'default', array('class' => 'success'));
+            }
+            else
+            {
+            	$this->Session->setFlash(__('No se ha podido actualizar su información. 
+            	Por favor, inténtelo de nuevo.'));
+            }
+        } else {
+            $this->request->data = $this->User->read(null, $id);
+            unset($this->request->data['User']['password']);
+        }
+	}
+
 	/*In case the user is an admin*/
 	public function adminprofile()
 	{
@@ -117,7 +147,6 @@ class UsersController extends AppController{
 	public function beforeFilter() {
 		parent::beforeFilter();
 		/*Aquí se validaría lo que hace un administrador y un usuario normal*/
-
 		if(!$this->Session->check('User'))
 		{
 			if($this->request->action == 'login')

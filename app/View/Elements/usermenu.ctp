@@ -1,6 +1,15 @@
+<?php
+   echo $this->Session->flash();
+?>
+
 <div id="cssmenu">
    <ul>
-      <li><a href='#'><span>Mi Perfil</span></a></li>
+      <li>
+         <?php
+            $temp = $this->Session->read('User');
+            echo $this->Html->link('Mi Perfil', array('action' => 'edituser', $temp['User']['id']));
+         ?>
+      </li>
       <li class='has-sub'><a href='#'><span>Sesiones</span></a>
          <ul>
             <li><a href='#'><span>A-Z</span></a></li>

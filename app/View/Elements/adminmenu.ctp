@@ -1,3 +1,7 @@
+<?php
+   echo $this->Session->flash();
+?>
+
 <div id="cssmenu">
    <ul>
       <li><a href='#'><span>Eventos</span></a></li>

@@ -449,7 +449,7 @@ header nav {
 	text-transform:uppercase;
 }
 
-.inside textarea 
+/*.inside textarea 
 { 
 	margin-top: -70px;
 	margin-left: 150px;
@@ -459,7 +459,7 @@ header nav {
 	color:#70635b; 
 	overflow:auto;
 	display: inline;;
-}
+}*/
 
 .inside input[type="file"]
 {
@@ -812,11 +812,15 @@ footer .aligncenter {
   min-height: 30px;
 }
 
-#UserName, #UserUsername, #UserLastname 
+#UserName, #UserUsername, #UserLastname, #UserLastlastname
 {
   display: block;
   width: 100%;
   min-height: 30px;	
+}
+
+#UserBio {
+	width: 100%;
 }
 
 input[type="submit"] {
