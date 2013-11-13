@@ -17,6 +17,11 @@ class UrlsController extends AppController{
                 $this->set('users', $users);
 
         }
+
+        public function index()
+        {
+                
+        }
 }
 
 ?>

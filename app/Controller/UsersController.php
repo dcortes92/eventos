@@ -26,6 +26,7 @@ class UsersController extends AppController{
 
 	public function login()
 	{
+		$this->set('title_for_layout', 'Eventos - Login');
 		if($this->request->is('post'))
 		{
 			//1. Find method: boring one
@@ -48,13 +49,32 @@ class UsersController extends AppController{
 			if($user)
 			{
 				$this->Session->write('User', $user);
-				$this->redirect(array(
+
+				$type = intval($this->Session->read('User')['User']['user_type']);
+				
+				if($type == 1) //Admin
+				{
+					$this->redirect(array(
+					'controller' => 'users',
+					'action' => 'adminprofile'
+					));
+				}
+				else if($type == 2) //Regular user
+				{
+					$this->redirect(array(
 					'controller' => 'users',
 					'action' => 'uprofile'
-				));
-			}			
-
-			$this->Session->setFlash('Correo y/o contrase&ntilde;a incorrectos');
+					));
+				}
+				else
+				{
+					$this->Session->setFlash('Error desconocido.');
+				}
+			}
+			else
+			{
+				$this->Session->setFlash('Correo y/o contrase&ntilde;a incorrectos');
+			}
 		}
 	}
 
@@ -68,7 +88,15 @@ class UsersController extends AppController{
 	/*Once the user has logged in, his menu is loaded*/
 	public function uprofile()
 	{
-		$this->layout = 'user';		
+		$this->set('title_for_layout', 'Eventos - Perfil Usuario');
+		$this->layout = 'user';
+	}
+
+	/*In case the user is an admin*/
+	public function adminprofile()
+	{
+		$this->set('title_for_layout', 'Eventos - Perfil Administrador');
+		$this->layout = 'admin';
 	}
 
 	/*Privacy*/

@@ -1,9 +1,12 @@
-<h2>Login</h2>
+<div class="inside">
+	<h2>Login</h2>
 
-<?php
+	<?php
 
-	echo $this->Form->create('User');
-	echo $this->Form->input('email', array('label' => 'Correo electr&oacute;nico'));
-	echo $this->Form->input('password', array('label' => 'Contrase&ntilde;a'));
-	echo $this->Form->end('Login');
-?>
+		echo $this->Form->create('User');
+		echo $this->Form->input('email', array('label' => 'Correo electr&oacute;nico'));
+		echo $this->Form->input('password', array('label' => 'Contrase&ntilde;a'));
+		echo $this->Form->end('Login');
+	?>
+
+</div>
