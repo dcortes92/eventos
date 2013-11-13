@@ -32,16 +32,5 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	/*Protect views that only a valid user can access*/
-	public function beforeFilter() {
-		parent::beforeFilter();
-
-		if( $this->request->action != 'login' && !$this->Session->check('User') ){
-			$this->Session->setFlash('Sorry you are accessing a private page, please login' );
-			$this->redirect(array(
-				'controller' => 'users',
-				'action' => 'login'
-			));
-		}
-	}
+	
 }
