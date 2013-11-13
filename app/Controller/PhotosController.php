@@ -3,9 +3,10 @@
 class PhotosController extends AppController{
 		public function index()
 	{
-		$photos = $this->Photo->find('all'); //Get all the urls and store them in a variable
-		
-		pr($photos);
+		$this ->layout='user';
+		$user_id = (int)$this -> Session -> read("User")['User']['id'];
+		$photos = $this->Photo->find('all', array(
+					'conditions' => array('Photo.user_id' => $user_id)));
 
 		$this->set('photos', $photos);
 	}

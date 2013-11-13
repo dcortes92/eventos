@@ -14,5 +14,4 @@
 
 	<?php endforeach ?>
 	
-	<?php print_r($this -> Session -> read("User")['User']['id']); ?>
 </table>
