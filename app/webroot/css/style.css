@@ -806,7 +806,7 @@ footer .aligncenter {
 }
 
 
-#UserPassword, #UserEmail {
+#UserPassword, #UserEmail, #UserUserId, #UserRol {
   display: block;
   width: 100%;
   min-height: 30px;

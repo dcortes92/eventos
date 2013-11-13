@@ -11,7 +11,7 @@
 		echo $this->Form->input('lastlastname', array('label' => 'Segundo Apellido'));
 		echo $this->Form->input('email', array('label' => 'Correo'));
 		echo $this->Form->input('id', array('type' => 'hidden'));
-		echo $this->Form->input('password', array('label' => 'Contraseña'));
+		echo $this->Form->input('password', array('type' => 'hidden'));
 		echo $this->Form->end('Actualizar');
 	?>
 </div>

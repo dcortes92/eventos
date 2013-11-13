@@ -95,7 +95,7 @@ class UsersController extends AppController{
 	public function logout()
 	{
 		$this->Session->destroy();
-		$this->redirect(array('controller' => 'home', 'action' => 'index'));
+		$this->redirect(array('controller' => 'users', 'action' => 'login'));
 	}
 
 	/*Once the user has logged in, his menu is loaded*/
@@ -121,6 +121,8 @@ class UsersController extends AppController{
             throw new NotFoundException(__('Usuario incorrecto'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
+        	$this->request->data['User']['password'] = $temp['User']['password'];
+        	//pr($this->request->data);
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash('Su información se ha actualizado', 'default', array('class' => 'success'));
             }
@@ -140,6 +142,39 @@ class UsersController extends AppController{
 	{
 		$this->set('title_for_layout', 'Business Meeting - Perfil Administrador');
 		$this->layout = 'admin';
+	}
+
+	public function editrol()
+	{
+		$this->set('title_for_layout', 'Business Meeting - Editar privilegios');
+		$this->layout = 'admin';
+
+		$users = $this->User->
+			find('list', array('conditions' => array('User.id !=' => $this->Session->read('User')['User']['id'])));
+
+		$this->set('users', $users);
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+        	$this->User->id = $this->request->data['User']['user_id'];
+        	if($this->User->saveField('user_type', $this->request->data['User']['rol'],
+        		array('validate' => false, 'callbacks' => false)))
+        	{
+        		$this->Session->setFlash('Su información se ha actualizado', 'default', array('class' => 'success'));
+        	}
+        	else
+        	{
+        		$this->Session->setFlash(__('No se ha podido actualizar su información. 
+            	Por favor, inténtelo de nuevo.'));
+        	}
+            /*if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash('Su información se ha actualizado', 'default', array('class' => 'success'));
+            }
+            else
+            {
+            	$this->Session->setFlash(__('No se ha podido actualizar su información. 
+            	Por favor, inténtelo de nuevo.'));
+            }*/
+        }
 	}
 
 	/*Privacy*/
