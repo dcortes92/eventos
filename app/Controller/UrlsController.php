@@ -21,10 +21,8 @@ class UrlsController extends AppController{
 		{
 				$this->Url->save($this->request->data);
 		}
-
 		$this->set('users', $users);
 
 	}
-}
 
 ?>

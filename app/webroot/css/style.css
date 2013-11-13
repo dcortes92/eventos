@@ -1,4 +1,4 @@
-/* Getting the new tags to behave */
+/* Getting the new tags to behave DA*/
 article, aside, audio, 
 canvas, command, 
 datalist, details, 
@@ -131,22 +131,6 @@ body {
 	min-width:940px;
 }
 
-
-/*----- form defaults -----*/
-input, 
-select, 
-textarea { 
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:1em;
-	vertical-align:middle;
-	font-weight:normal;
-}
-
-fieldset {
-	border:0;
-}
-
-/*----- lists -----*/
 
 .categories {
 	padding-bottom:37px;
@@ -821,10 +805,18 @@ footer .aligncenter {
 	text-align: right;
 }
 
-#UserPassword, #UserEmail{
+
+#UserPassword, #UserEmail {
   display: block;
   width: 100%;
   min-height: 30px;
+}
+
+#UserName, #UserUsername, #UserLastname 
+{
+  display: block;
+  width: 100%;
+  min-height: 30px;	
 }
 
 input[type="submit"] {
@@ -882,65 +874,65 @@ input[type="submit"]:active {
 }
     
 /*Formulario de Registro*/
-.form-horizontal input,
-.form-horizontal textarea,
-.form-horizontal select{
+#form-horizontal input,
+#form-horizontal textarea,
+#form-horizontal select{
   display: inline-block;
 
   *zoom: 1;
   margin-bottom: 0;
   vertical-align: middle;
 }
-.form-horizontal .hide {
+#form-horizontal .hide {
   display: none;
 }
-.control-group {
+#control-group {
   margin-bottom: 10px;
 }
 legend + .control-group {
   margin-top: 20px;
   -webkit-margin-top-collapse: separate;
 }
-.form-horizontal .control-group {
+#form-horizontal .control-group {
   margin-bottom: 20px;
   *zoom: 1;
 }
-.form-horizontal .control-group:before,
-.form-horizontal .control-group:after {
+#form-horizontal .control-group:before,
+#form-horizontal .control-group:after {
   display: table;
   content: "";
   line-height: 0;
 }
-.form-horizontal .control-group:after {
+#form-horizontal .control-group:after {
   clear: both;
 }
-.form-horizontal .control-label {
+#form-horizontal .control-label {
   float: left;
   width: 160px;
   padding-top: 5px;
   text-align: left;
 }
-.form-horizontal .controls {
+#form-horizontal .controls {
   *display: inline-block;
   *padding-left: 20px;
   margin-left: 180px;
   *margin-left: 0;
 }
-.form-horizontal .controls:first-child {
+#form-horizontal .controls:first-child {
   *padding-left: 180px;
 }
-.form-horizontal .help-block {
+#form-horizontal .help-block {
   margin-bottom: 0;
 }
-.form-horizontal input + .help-block,
-.form-horizontal select + .help-block,
-.form-horizontal textarea + .help-block,
-.form-horizontal .uneditable-input + .help-block,
-.form-horizontal .input-prepend + .help-block,
-.form-horizontal .input-append + .help-block {
+#form-horizontal input + .help-block,
+#form-horizontal select + .help-block,
+#form-horizontal textarea + .help-block,
+#form-horizontal .uneditable-input + .help-block,
+#form-horizontal .input-prepend + .help-block,
+#form-horizontal .input-append + .help-block {
   margin-top: 10px;
 }
-.form-horizontal .form-actions {
+#form-horizontal .form-actions {
   padding-left: 180px;
 }
 

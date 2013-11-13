@@ -52,17 +52,14 @@
          <?php echo $this->element('events')?>
       </aside>
       <!-- content -->
-      <section id="content"> <!-- Esta es la sección que se debe modificar -->
-         <div class="inside">
-
-            <?php
-               echo $this->Session->flash();
-            ?>
-            <?php 
-               /*Carga el contenido de alguna vista en esta sección*/
-               echo $this->fetch('content');
-            ?>
-         </div>
+      <section id="content"> <!-- Esta es la sección que se debe modificar -->         
+          <?php
+             echo $this->Session->flash();
+          ?>
+          <?php 
+             /*Carga el contenido de alguna vista en esta sección*/
+             echo $this->fetch('content');
+          ?>
       </section>
    </div>
 </div>

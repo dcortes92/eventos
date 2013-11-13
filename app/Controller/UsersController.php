@@ -14,7 +14,7 @@ class UsersController extends AppController{
 	
 	public function add()
 	{
-		$this->set('title_for_layout', 'Eventos - Registrar Usuario');
+		$this->set('title_for_layout', 'Business Meeting - Registrar Usuario');
 		if( $this->request->is('post') )
 		{
 			/*Saves the user info to the database, the model validates the input*/
@@ -24,8 +24,22 @@ class UsersController extends AppController{
 		}
 	}
 
+	/*Public view for registering users*/
+	public function register()
+	{
+
+		$this->set('title_for_layout', 'Business Meeting - Registrarse');
+		if( $this->request->is('post'))
+		{
+			$this->User->save( $this->request->data );
+			$this->Session->setFlash('Usuario registrado correctamente.', 'default', array('class' => 'success'));
+			$this->redirect('/');
+		}
+	}
+
 	public function login()
 	{
+		$this->set('title_for_layout', 'Business Meeting - Login');
 		if($this->request->is('post'))
 		{
 			//1. Find method: boring one
@@ -48,13 +62,32 @@ class UsersController extends AppController{
 			if($user)
 			{
 				$this->Session->write('User', $user);
-				$this->redirect(array(
+
+				$type = intval($this->Session->read('User')['User']['user_type']);
+				
+				if($type == 1) //Admin
+				{
+					$this->redirect(array(
+					'controller' => 'users',
+					'action' => 'adminprofile'
+					));
+				}
+				else if($type == 2) //Regular user
+				{
+					$this->redirect(array(
 					'controller' => 'users',
 					'action' => 'uprofile'
-				));
-			}			
-
-			$this->Session->setFlash('Correo y/o contrase&ntilde;a incorrectos');
+					));
+				}
+				else
+				{
+					$this->Session->setFlash('Error desconocido.');
+				}
+			}
+			else
+			{
+				$this->Session->setFlash('Correo y/o contrase&ntilde;a incorrectos');
+			}
 		}
 	}
 
@@ -68,20 +101,47 @@ class UsersController extends AppController{
 	/*Once the user has logged in, his menu is loaded*/
 	public function uprofile()
 	{
-		$this->layout = 'user';		
+		$this->set('title_for_layout', 'Business Meeting - Perfil Usuario');
+		$this->layout = 'user';
+	}
+
+	/*In case the user is an admin*/
+	public function adminprofile()
+	{
+		$this->set('title_for_layout', 'Business Meeting - Perfil Administrador');
+		$this->layout = 'admin';
 	}
 
 	/*Privacy*/
 	/*Protect views that only a valid user can access*/
 	public function beforeFilter() {
 		parent::beforeFilter();
+		/*Aquí se validaría lo que hace un administrador y un usuario normal*/
 
-		if( $this->request->action != 'login' && !$this->Session->check('User') ){
+		if(!$this->Session->check('User'))
+		{
+			if($this->request->action == 'login')
+			{
+				
+			}
+			elseif ($this->request->action == 'register') {
+				
+			}
+			else
+			{
+				$this->redirect(array(
+				'controller' => 'users',
+				'action' => 'login'
+				));	
+			}
+		}
+
+		/*if( $this->request->action != 'login' && !$this->Session->check('User') ){
 			$this->redirect(array(
 				'controller' => 'users',
 				'action' => 'login'
 			));
-		}
+		}*/
 	}
 }
 
