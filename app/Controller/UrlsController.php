@@ -24,5 +24,6 @@ class UrlsController extends AppController{
 		$this->set('users', $users);
 
 	}
+}
 
 ?>
