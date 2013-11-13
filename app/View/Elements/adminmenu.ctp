@@ -8,7 +8,7 @@
          <ul>
             <li><a href='#'><span>Salones</span></a></li>
             <li><a href='#'><span>Permisos</span></a></li>
-            <li class='last'><a href='#'><span>Cerrar Sesi&oacute;n</span></a></li>
+            <li class='last'><span><?php echo $this->Html->link('Logout ('.$username.')', array('controller' => 'users', 'action' => 'logout')) ?></span></li>
          </ul>
       </li>
    </ul>
