@@ -11,7 +11,7 @@ class UsersController extends AppController{
 
 		$this->set('users', $users);
 	}
-
+	
 	public function add()
 	{
 		if( $this->request->is('post') )
