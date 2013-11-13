@@ -18,7 +18,7 @@ class User extends AppModel{
         );
 
         public $validate = array(
-                'username' => array(
+                'name' => array(
                                 'rule' => 'notEmpty',
                                 'message' => 'Please fill in the first name'
                 ),
@@ -29,6 +29,10 @@ class User extends AppModel{
                 'email' => array(
                                 'rule' => 'email',
                                 'message' => 'Please fill a valid email address'
+                ),
+                'username' => array(
+                                'rule' => 'notEmpty',
+                                'message' => 'Please fill in the username'
                 ),
                 'password' => array(
                                 'rule' => array('between', 5, 10),
