@@ -24,6 +24,6 @@
          </ul>
       </li>
       <li class='last'><a href='#'><span>Mis Propuestas</span></a></li>
-      <li class='last'><span><?php echo $this->Html->link('Logout ('.$username.')', array('controller' => 'users', 'action' => 'logout')) ?></span></li>
+      <li class='last'><span><?php echo $this->Html->link('Salir ('.$username.')', array('controller' => 'users', 'action' => 'logout')) ?></span></li>
    </ul>
 </div>

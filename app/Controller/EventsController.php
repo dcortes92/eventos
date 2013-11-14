@@ -71,6 +71,29 @@
 				return $this->redirect(array('action' => 'index'));
 			}
 		}
+
+		/*Permisos de accesso*/
+		public function beforeFilter()
+		{
+			parent::beforeFilter();
+			if(!$this->Session->check('User')) //Si no ha iniciado sesión
+			{
+				$this->redirect(array(
+				'controller' => 'users',
+				'action' => 'login' //se restringe el acceso y se redirecciona a la págian de login
+				));	
+			}
+			else //Usuario activo
+			{
+				$temp = $this->Session->read('User');
+				if(intval($temp['User']['user_type']) == 2) // 2 = Usuario, 1 = Administrador
+				{
+					$this->Session->setFlash('No se ha encontrado la página solicitada.');
+					$this->redirect(array('controller' => 'users',
+					'action' => 'uprofile'));	
+				}
+			}
+		}
 	}
 	
 ?>
