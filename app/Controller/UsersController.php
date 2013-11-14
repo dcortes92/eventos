@@ -3,6 +3,7 @@
 App::uses('Security', 'Utility');
 
 class UsersController extends AppController{
+
 	public function index()
 	{
 		$users = $this->User->find('all'); //Get all the users and store them in a variable
