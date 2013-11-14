@@ -17,10 +17,14 @@ class Photo extends AppModel{
 
 
 	public $belongsTo = array(
-			'User'
+		'User'
 	);
 		
 	public $validate = array(
+		'title' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Please fill in the name'
+		),
 		'photo' => array(
 				'rule' => 'notEmpty',
 				'message' => 'Please fill in the name'

@@ -812,14 +812,14 @@ footer .aligncenter {
   min-height: 30px;
 }
 
-#UserName, #UserUsername, #UserLastname, #UserLastlastname
+#UserName, #UserUsername, #UserLastname, #UserLastlastname, #EventTitle
 {
   display: block;
   width: 100%;
   min-height: 30px;	
 }
 
-#UserBio {
+#UserBio, #EventDescription {
 	width: 100%;
 }
 
