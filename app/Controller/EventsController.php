@@ -32,6 +32,8 @@
 			}
 		}
 		public function edit($id = null) {
+			$this->set('title_for_layout','Business Meeting - Editar evento');
+			$this ->layout='user';
 			if (!$id) {
 				throw new NotFoundException(__('Invalid event'));
 			}

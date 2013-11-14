@@ -1,8 +1,10 @@
-<!-- File: /app/View/Posts/edit.ctp -->
-<h1>Edit Proposals</h1>
+<div class="inside">
+<br>
+<h2>Editar Propuestas</h2>
 <?php
-echo $this->Form->create('Proposal');
-echo $this->Form->input('name');
-echo $this->Form->input('description', array('rows' => '3'));
-echo $this->Form->end('Save Proposal');
+echo $this->Form->create(array('id' => 'UserLoginForm'));
+echo $this->Form->input('name',array('label' => 'Nombre'));
+echo $this->Form->input('description', array('rows' => '3','label' => 'Descripcion'));
+echo $this->Form->end('Guardar');
 ?>
+</div>

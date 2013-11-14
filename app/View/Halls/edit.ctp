@@ -1,8 +1,10 @@
-<!-- File: /app/View/Posts/edit.ctp -->
-<h1>Edit Halls</h1>
+<div class="inside">
+<br>
+<h2>Editar Salon</h2>
 <?php
-echo $this->Form->create('Hall');
-echo $this->Form->input('name');
-echo $this->Form->input('address', array('rows' => '3'));
-echo $this->Form->end('Save Hall');
+echo $this->Form->create(array('id' => 'UserLoginForm'));
+echo $this->Form->input('name',array('label' => 'Nombre'));
+echo $this->Form->input('address', array('rows' => '3','label' => 'Dirección'));
+echo $this->Form->end('Guardar');
 ?>
+</div>

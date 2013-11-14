@@ -1,8 +1,11 @@
-<!-- File: /app/View/Posts/add.ctp -->
-<h1>Add Halls</h1>
+<div class="inside">
+<br>
+<h2>Crear Salones</h2>
 <?php
-	echo $this->Form->create('Hall');
-	echo $this->Form->input('name');
-	echo $this->Form->input('address');
-	echo $this->Form->end('Save Hall');
+	echo $this->Form->create(array('id' => 'UserLoginForm'));
+	echo $this->Form->input('name',array('label' => 'Nombre'));
+	echo $this->Form->input('address',array('label' => 'Dirección','rows' => '3'));
+	echo $this->Form->end('Crear');
 ?>
+</br>
+</div>

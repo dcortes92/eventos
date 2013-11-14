@@ -29,9 +29,6 @@
 		</tr>
 		<?php endforeach; ?>
 	</table><br><br>
-	<div id="cssmenu">
-		<ul>
-			<li><?php echo $this->Html->link('Agregar Evento', array('action' => 'add')); ?> </li>
-		</ul>
-	</div>
+	
+	<div id='button'><span><?php echo $this->Html->link('Crear', array('action' => 'add')); ?> </span></div>
 </div>		
