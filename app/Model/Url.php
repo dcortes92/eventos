@@ -8,6 +8,10 @@ class Url extends AppModel{
         public $belongsTo = array(
                 'User'
         );
+		
+		public $validate = array(
+			'photo' => array('rule' => 'notEmpty')
+		);
 }
 
 ?>

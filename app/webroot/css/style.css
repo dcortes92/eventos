@@ -812,7 +812,7 @@ footer .aligncenter {
   min-height: 30px;
 }
 
-#UserName, #UserUsername, #UserLastname 
+#UserName, #UserUsername, #UserLastname , #EvenTitle
 {
   display: block;
   width: 100%;
