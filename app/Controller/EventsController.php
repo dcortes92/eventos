@@ -1,12 +1,14 @@
 <?php
 	class EventsController extends AppController {
+		//Pueden verlo solo administradores
 		public function index() {
 			$this->set('title_for_layout','Business Meeting - Eventos');
-			$this ->layout='user';
+			$this ->layout='admin';
 			$this->set('events', $this->Event->find('all'));
 		}
-		
+		//Pueden verlo  administradores y  usuarios
 		public function view($id = null) {
+			
 			$this->set('title_for_layout','Business Meeting - Informamación evento');
 			$this ->layout='user';
 			if (!$id) {
@@ -18,7 +20,7 @@
 			}
 			$this->set('event', $event);
 		}
-		
+		//Pueden verlo  solo administradores
 		 public function add() {
 			$this->set('title_for_layout','Business Meeting - Agregar Envento');
 			$this ->layout='admin';
@@ -31,6 +33,7 @@
 				$this->Session->setFlash(__('Unable to add your post.'));
 			}
 		}
+		//Pueden verlo solo administradores
 		public function edit($id = null) {
 			$this->set('title_for_layout','Business Meeting - Editar evento');
 			$this ->layout='user';
@@ -57,6 +60,7 @@
 				$this->request->data = $event;
 			}
 		}
+		//Pueden verlo  solo administradores
 		public function delete($id) {
 			if ($this->request->is('get')) {
 				throw new MethodNotAllowedException();

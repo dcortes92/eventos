@@ -1,12 +1,13 @@
 <?php
 
 	class UrlsController extends AppController{
+		//Pueden verlo solo administradores
 		public function index() {
 			$this->set('title_for_layout','Business Meeting - Urls');
 			$this ->layout='user';
 			$this->set('urls', $this->Url->find('all'));
 		}
-		
+		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Url');
 			$this ->layout='user';
@@ -19,6 +20,7 @@
 			}
 			$this->set('url', $url);
 		}
+		//Pueden verlo solo administradores
 		 public function add() {
 			$this->set('title_for_layout','Business Meeting - Agregar Url');
 			$this ->layout='user';
@@ -33,6 +35,7 @@
 			}
 			$this->set('users', $users);
 		}
+		//Pueden verlo solo administradores
 		public function edit($id = null) {
 			if (!$id) {
 				throw new NotFoundException(__('Invalid url'));
@@ -56,6 +59,7 @@
 				$this->request->data = $url;
 			}
 		}
+		//Pueden verlo solo administradores
 		public function delete($id) {
 			$this->set('title_for_layout','Business Meeting - Borrar Url');
 			$this ->layout='user';

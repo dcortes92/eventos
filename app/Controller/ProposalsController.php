@@ -1,11 +1,12 @@
 <?php
 	class ProposalsController extends AppController {
+		//Pueden verlo solo administradores
 		public function index() {
 			$this->set('title_for_layout','Business Meeting - Propuestas');
 			$this ->layout='admin';
 			$this->set('proposals', $this->Proposal->find('all'));
 		}
-		
+		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Propuesta');
 			$this ->layout='user';
@@ -18,7 +19,7 @@
 			}
 			$this->set('proposal', $proposal);
 		}
-		
+		//Pueden verlo solo administradores
 		 public function add() {
 			$this->set('title_for_layout','Business Meeting - Agregar Propuestas');
 			$this ->layout='admin';
@@ -38,6 +39,7 @@
 
             $this->set('events', $events);
 		}
+		//Pueden verlo solo administradores
 		public function edit($id = null) {
 			$this->set('title_for_layout','Business Meeting - Editar Propuestas');
 			$this ->layout='admin';
@@ -63,6 +65,7 @@
 				$this->request->data = $proposal;
 			}
 		}
+		//Pueden verlo solo administradores
 		public function delete($id) {
 			if ($this->request->is('get')) {
 				throw new MethodNotAllowedException();

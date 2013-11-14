@@ -1,11 +1,12 @@
 <?php
 	class ThreadsController extends AppController {
+		//Pueden verlo solo administradores
 		public function index() {
 			$this->set('title_for_layout','Business Meeting - Hilos');
 			$this ->layout='admin';
 			$this->set('threads', $this->Thread->find('all'));
 		}
-		
+		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Hilo');
 			$this ->layout='user';
@@ -18,7 +19,7 @@
 			}
 			$this->set('thread', $thread);
 		}
-		
+		//Pueden verlo solo administradores
 		 public function add() {
 			$this->set('title_for_layout','Business Meeting - Agregar Hilos');
 			$this ->layout='admin';
@@ -38,6 +39,7 @@
 
             $this->set('events', $events);
 		}
+		//Pueden verlo solo administradores
 		public function edit($id = null) {
 			$this->set('title_for_layout','Business Meeting - Editar Hilos');
 			$this ->layout='admin';
@@ -63,6 +65,7 @@
 				$this->request->data = $thread;
 			}
 		}
+		//Pueden verlo solo administradores
 		public function delete($id) {
 			if ($this->request->is('get')) {
 				throw new MethodNotAllowedException();

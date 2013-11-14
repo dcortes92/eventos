@@ -1,13 +1,13 @@
 <?php
 
 	class PhotosController extends AppController{
-	
+		//Pueden verlo solo administradores
 		public function index() {
 			$this->set('title_for_layout','Business Meeting - Fotos');
 			$this ->layout='user';
 			$this->set('photos', $this->Photo->find('all'));
 		}
-		
+		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Foto');
 			$this ->layout='user';
@@ -20,6 +20,7 @@
 			}
 			$this->set('photo', $photo);
 		}
+		//Pueden verlo solo administradores
 		 public function add() {
 			$this->set('title_for_layout','Business Meeting - Agregar');
 			$this ->layout='user';
@@ -34,6 +35,7 @@
 			}
 			$this->set('users', $users);
 		}
+		//Pueden verlo solo administradores
 		public function edit($id = null) {
 			$this->set('title_for_layout','Business Meeting - Editar Foto');
 			$this ->layout='user';
@@ -59,6 +61,7 @@
 				$this->request->data = $photo;
 			}
 		}
+		//Pueden verlo solo administradores
 		public function delete($id) {
 			if ($this->request->is('get')) {
 				throw new MethodNotAllowedException();

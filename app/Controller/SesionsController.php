@@ -1,11 +1,12 @@
 <?php
 	class SesionsController extends AppController {
+		//Pueden verlo solo administradores
 		public function index() {
 			$this->set('title_for_layout','Business Meeting - Sesiones');
 			$this ->layout='user';
 			$this->set('sesions', $this->Sesion->find('all'));
 		}
-		
+		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Sesion');
 			$this ->layout='admin';
@@ -18,13 +19,14 @@
 			}
 			$this->set('sesion', $sesion);
 		}
-		
+		//Pueden verlo solo administradores
 		 public function selectproposal(){
 			$this->set('title_for_layout','Business Meeting - Seleccionar Propuesta');
 			$this ->layout='admin';
 			$proposals = $this->Sesion->Proposal->find('all');
 			$this->set('proposals', $proposals);
 		 }
+		 //Pueden verlo solo administradores
 		 public function add($id=null) {
 			$this->set('title_for_layout','Business Meeting - Crear Sesion');
 			$this ->layout='admin';
@@ -44,6 +46,7 @@
             $this->set('halls', $halls);
 			$this->set('threads', $threads );
 		}
+		//Pueden verlo solo administradores
 		public function edit($id = null) {
 			$this->set('title_for_layout','Business Meeting - Editar Sesion');
 			$this ->layout='admin';
@@ -69,6 +72,7 @@
 				$this->request->data = $sesion;
 			}
 		}
+		//Pueden verlo solo administradores
 		public function delete($id) {
 			$this->set('title_for_layout','Business Meeting - Borrar Sesion');
 			$this ->layout='admin';

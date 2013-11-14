@@ -1,11 +1,12 @@
 <?php
 	class HallsController extends AppController {
+		//Pueden verlo solo administradores
 		public function index() {
 			$this->set('title_for_layout','Business Meeting - Salones');
 			$this ->layout='user';
 			$this->set('halls', $this->Hall->find('all'));
 		}
-		
+		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Salon');
 			$this ->layout='user';
@@ -18,7 +19,7 @@
 			}
 			$this->set('hall', $hall);
 		}
-		
+		//Pueden verlo solo administradores
 		 public function add() {
 			$this->set('title_for_layout','Business Meeting - Agregar Salon');
 			$this ->layout='admin';
@@ -31,6 +32,7 @@
 				$this->Session->setFlash(__('Unable to add your post.'));
 			}
 		}
+		//Pueden verlo solo administradores
 		public function edit($id = null) {
 			$this->set('title_for_layout','Business Meeting - Editar salón');
 			$this ->layout='admin';
@@ -56,6 +58,7 @@
 				$this->request->data = $hall;
 			}
 		}
+		//Pueden verlo solo administradores
 		public function delete($id) {
 			if ($this->request->is('get')) {
 				throw new MethodNotAllowedException();
