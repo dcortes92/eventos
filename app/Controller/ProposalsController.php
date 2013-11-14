@@ -1,10 +1,14 @@
 <?php
 	class ProposalsController extends AppController {
 		public function index() {
+			$this->set('title_for_layout','Business Meeting - Propuestas');
+			$this ->layout='admin';
 			$this->set('proposals', $this->Proposal->find('all'));
 		}
 		
 		public function view($id = null) {
+			$this->set('title_for_layout','Business Meeting - Ver Propuesta');
+			$this ->layout='user';
 			if (!$id) {
 				throw new NotFoundException(__('Invalid proposal'));
 			}
@@ -16,7 +20,8 @@
 		}
 		
 		 public function add() {
-			
+			$this->set('title_for_layout','Business Meeting - Agregar Propuestas');
+			$this ->layout='admin';
 			$events = $this->Proposal->Event->find('list');
 			
 			//$proposals = $this->Proposal->find('list');
@@ -24,7 +29,7 @@
 			if ($this->request->is('post')) {
 				$this->Proposal->create();
 				if ($this->Proposal->save($this->request->data)) {
-					$this->Session->setFlash(__('Your post has been saved.'));
+					$this->Session->setFlash('La propuesta ha sido creada.','default',array('class' => 'success'));
 					return $this->redirect(array('action' => 'index'));
 				}
 				$this->Session->setFlash(__('Unable to add your post.'));
@@ -34,6 +39,8 @@
             $this->set('events', $events);
 		}
 		public function edit($id = null) {
+			$this->set('title_for_layout','Business Meeting - Editar Propuestas');
+			$this ->layout='admin';
 			if (!$id) {
 				throw new NotFoundException(__('Invalid proposal'));
 			}
@@ -46,7 +53,7 @@
 			if ($this->request->is(array('proposal', 'put'))) {
 				$this->Proposal->id = $id;
 				if ($this->Proposal->save($this->request->data)) {
-					$this->Session->setFlash(__('Your proposal has been updated.'));
+					$this->Session->setFlash('La propuesta ha sido actualisada.','default',array('class' => 'success'));
 					return $this->redirect(array('action' => 'index'));
 				}
 				$this->Session->setFlash(__('Unable to update your proposal.'));
@@ -62,7 +69,7 @@
 			}
 
 			if ($this->Proposal->delete($id)) {
-				$this->Session->setFlash(__('The proposal with id: %s has been deleted.', h($id)));
+				$this->Session->setFlash('La propuesta ha sido borrada.','default',array('class' => 'success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 		}

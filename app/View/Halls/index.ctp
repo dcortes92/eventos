@@ -1,31 +1,37 @@
-<!-- File: /app/View/Posts/index.ctp -->
+<div class="inside">
+<br>
+	<h2>Salones</h2>
+	
+	<table class='TableResult'>
+		<tr>
+			<th>Nombre</th>
+			<th colspan="2">Acciones</th>
+		</tr>
 
-<h1>Halls</h1>
-<p><?php echo $this->Html->link('Add Hall', array('action' => 'add')); ?></p>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Actions</th>
-    </tr>
+	<!-- Here's where we loop through our $halls array, printing out post info -->
 
-<!-- Here's where we loop through our $halls array, printing out post info -->
+		<?php foreach ($halls as $hall): ?>
+		<tr>
+			<td>
+				<?php echo $this->Html->link($hall['Hall']['name'], array('action' => 'view', $hall['Hall']['id'])); ?>
+			</td>
+			<td>
+				<?php echo $this->Form->postLink(
+					'Borrar',
+					array('action' => 'delete', $hall['Hall']['id']),
+					array('confirm' => '¿Esta seguro?'));
+				?>
+			</td>
+			<td>
+				<?php echo $this->Html->link('Editar', array('action' => 'edit', $hall['Hall']['id'])); ?>
+			</td>
+		</tr>
+		<?php endforeach; ?>
 
-    <?php foreach ($halls as $hall): ?>
-    <tr>
-        <td><?php echo $hall['Hall']['id']; ?></td>
-        <td>
-            <?php echo $this->Html->link($hall['Hall']['name'], array('action' => 'view', $hall['Hall']['id'])); ?>
-        </td>
-        <td>
-            <?php echo $this->Form->postLink(
-                'Delete',
-                array('action' => 'delete', $hall['Hall']['id']),
-                array('confirm' => 'Are you sure?'));
-            ?>
-            <?php echo $this->Html->link('Edit', array('action' => 'edit', $hall['Hall']['id'])); ?>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-
-</table>
+	</table>
+	<br>
+	<br>
+	<label id="button">
+		<span><?php echo $this->Html->link('Agregar', array('action' => 'add')); ?></span>
+	</label>
+</div>

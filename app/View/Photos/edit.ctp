@@ -1,8 +1,9 @@
-<!-- File: /app/View/Posts/edit.ctp -->
-<h1>Edit Photos</h1>
+<div class="inside">
+<br>
+<h2>Editar foto</h2>
 <?php
-echo $this->Form->create('Photo');
-echo $this->Form->input('title');
-echo $this->Form->input('photo', array('rows' => '3'));
-echo $this->Form->end('Save Photo');
+echo $this->Form->create(array('id' => 'UserLoginForm'));
+echo $this->Form->input('title',array('label' => 'Titulo'));
+echo $this->Form->input('photo', array('rows' => '3','label' => 'Foto'));
+echo $this->Form->end('Salvar');
 ?>

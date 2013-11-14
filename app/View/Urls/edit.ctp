@@ -1,8 +1,10 @@
-<!-- File: /app/View/Posts/edit.ctp -->
-<h1>Edit Urls</h1>
+<div class="inside">
+<br>
+<h2>Editar Urls</h2>
 <?php
-echo $this->Form->create('Url');
-echo $this->Form->input('title');
-echo $this->Form->input('photo', array('rows' => '3'));
-echo $this->Form->end('Save Url');
+echo $this->Form->create(array('id' => 'UserLoginForm'));
+echo $this->Form->input('title',array('label' => 'Titulo'));
+echo $this->Form->input('url', array('rows' => '3','label' => 'URL'));
+echo $this->Form->end('Modificar');
 ?>
+</div>

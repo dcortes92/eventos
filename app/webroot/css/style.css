@@ -812,14 +812,14 @@ footer .aligncenter {
   min-height: 30px;
 }
 
-#UserName, #UserUsername, #UserLastname, #UserLastlastname, #EventTitle
+#UserName, #UserUsername, #UserLastname, #UserLastlastname, #EventTitle, #HallName, #HallAddress, #ProposalName, #ProposalEventId, #ThreadName, #ThreadDescription, #ThreadEventId, #UrlTitle, #UrlUrl, #PhotoTitle, #PhotoPhoto, #SesionName, #SesionDate, #SesionThreadId, #SesionHallId
 {
   display: block;
   width: 100%;
   min-height: 30px;	
 }
 
-#UserBio, #EventDescription {
+#UserBio, #EventDescription, #ProposalDescription, #SesionDescription {
 	width: 100%;
 }
 
@@ -1223,9 +1223,9 @@ p.error em {
 	
 	border:1px solid #000000;
 	border-width:0px 1px 1px 0px;
-	text-align:left;
+	text-align:center;
 	padding:7px;
-	font-size:10px;
+	font-size:16px;
 	font-family:Arial;
 	font-weight:normal;
 	color:#000000;
@@ -1266,7 +1266,7 @@ p.error em {
 
 /*Botones en general*/
 
-#button {
+#button a{
 	margin-top: 10px;
 	-moz-box-shadow:inset 0px 1px 0px 0px #3EA6CB;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #3EA6CB;
@@ -1306,16 +1306,8 @@ p.error em {
      -moz-border-radius: 6px;
           border-radius: 6px;
 }
-#button:hover {
-	-moz-box-shadow:inset 0px 1px 0px 0px #008cc4;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #008cc4;
-	box-shadow:inset 0px 1px 0px 0px #008cc4;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #008cc4), color-stop(1, #008cc4) );
-	background:-moz-linear-gradient( center top, #008cc4 5%, #008cc4 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#008cc4', endColorstr='#008cc4');
-	background-color:#008cc4;
-}
-#button{
+
+#button {
 	position:relative;
 	top:1px;
 }

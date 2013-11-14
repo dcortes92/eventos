@@ -1,31 +1,34 @@
-<!-- File: /app/View/Posts/index.ctp -->
+<div class="inside">
+<br>
+<h2>Urls</h2>
 
-<h1>Urls</h1>
-<p><?php echo $this->Html->link('Add Url', array('action' => 'add')); ?></p>
-<table>
+<table class='TableResult'>
     <tr>
-        <th>Id</th>
         <th>Titulo</th>
-        <th>Actions</th>
+        <th colspan="2">Actions</th>
     </tr>
 
 <!-- Here's where we loop through our $urls array, printing out post info -->
 
     <?php foreach ($urls as $url): ?>
     <tr>
-        <td><?php echo $url['Url']['id']; ?></td>
         <td>
             <?php echo $this->Html->link($url['Url']['title'], array('action' => 'view', $url['Url']['id'])); ?>
         </td>
         <td>
             <?php echo $this->Form->postLink(
-                'Delete',
+                'Borrar',
                 array('action' => 'delete', $url['Url']['id']),
-                array('confirm' => 'Are you sure?'));
+                array('confirm' => '¿Esta Seguro?'));
             ?>
-            <?php echo $this->Html->link('Edit', array('action' => 'edit', $url['Url']['id'])); ?>
-        </td>
+		</td>
+		<td>
+            <?php echo $this->Html->link('Editar', array('action' => 'edit', $url['Url']['id'])); ?>
+       
+		</td>
     </tr>
     <?php endforeach; ?>
 
 </table>
+<br>
+<div id="button"><span><?php echo $this->Html->link('Guardar URL', array('action' => 'add')); ?></span></div>

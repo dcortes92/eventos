@@ -1,3 +1,5 @@
-
-	<h1><?php echo h($hall['Event']['title']); ?></h1>
-	<p><?php echo h($hall['Event']['description']); ?></p>
+<div class="inside">
+	<br>
+	<h2><?php echo h($hall['Hall']['name']); ?></h2>
+	<p><?php echo h($hall['Hall']['address']); ?></p>
+</div>

@@ -1,19 +1,17 @@
-<!-- File: /app/View/Posts/index.ctp -->
+<div class="inside">
+<br>
+<h2>Fotos</h2>
 
-<h1>Photos</h1>
-<p><?php echo $this->Html->link('Add Photo', array('action' => 'add')); ?></p>
-<table>
+<table class='TableResult'>
     <tr>
-        <th>Id</th>
         <th>Titulo</th>
-        <th>Actions</th>
+        <th colspan="2">Actions</th>
     </tr>
 
 <!-- Here's where we loop through our $photos array, printing out post info -->
 
     <?php foreach ($photos as $photo): ?>
     <tr>
-        <td><?php echo $photo['Photo']['id']; ?></td>
         <td>
             <?php echo $this->Html->link($photo['Photo']['title'], array('action' => 'view', $photo['Photo']['id'])); ?>
         </td>
@@ -23,9 +21,14 @@
                 array('action' => 'delete', $photo['Photo']['id']),
                 array('confirm' => 'Are you sure?'));
             ?>
+		</td>
+		<td>
             <?php echo $this->Html->link('Edit', array('action' => 'edit', $photo['Photo']['id'])); ?>
         </td>
     </tr>
     <?php endforeach; ?>
 
 </table>
+<br>
+<div id="button"><span><?php echo $this->Html->link('Crear Foto', array('action' => 'add')); ?></p></div>
+</div>
