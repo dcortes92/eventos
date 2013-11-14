@@ -1263,3 +1263,59 @@ p.error em {
 .TableResult tr:first-child td:last-child{
 	border-width:0px 0px 1px 1px;
 }
+
+/*Botones en general*/
+
+#button {
+	margin-top: 10px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #3EA6CB;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #3EA6CB;
+	box-shadow:inset 0px 1px 0px 0px #3EA6CB;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3EA6CB), color-stop(1, #3EA6CB) );
+	background:-moz-linear-gradient( center top, #3EA6CB 5%, #3EA6CB 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3EA6CB', endColorstr='#3EA6CB');
+	background-color:#3EA6CB;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #3EA6CB;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #3EA6CB;
+	
+	-webkit-border-radius: 6px; /*Bordes redondeados del boton*/
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+#button:hover {
+	-moz-box-shadow:inset 0px 1px 0px 0px #008cc4;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #008cc4;
+	box-shadow:inset 0px 1px 0px 0px #008cc4;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #008cc4), color-stop(1, #008cc4) );
+	background:-moz-linear-gradient( center top, #008cc4 5%, #008cc4 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#008cc4', endColorstr='#008cc4');
+	background-color:#008cc4;
+}
+#button{
+	position:relative;
+	top:1px;
+}
