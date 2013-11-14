@@ -6,11 +6,15 @@ class UsersController extends AppController{
 
 	public function index()
 	{
-		$users = $this->User->find('all'); //Get all the users and store them in a variable
+		//$users = $this->User->find('all'); //Get all the users and store them in a variable
 
-		pr($users);
+		//pr($users);
 
-		$this->set('users', $users);
+		//$this->set('users', $users);
+
+		//$comments = $this->User->Comment->find('all');
+
+		//pr($comments);
 	}
 	
 	public function add()
@@ -184,6 +188,10 @@ class UsersController extends AppController{
 			}
 			elseif ($this->request->action == 'register') {
 				//todos pueden ir a register
+			}
+			elseif ($this->request->action == 'index')
+			{
+				//todos pueden ver los uusarios
 			}
 			else //en otro caso, se está consultando una página de usuarios o administrador
 			{
