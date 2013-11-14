@@ -53,10 +53,9 @@
       </aside>
       <!-- content -->
       <section id="content"> <!-- Esta es la sección que se debe modificar -->
-        <?php
-           echo $this->Session->flash();
-        ?>
-
+         <?php
+             echo $this->Session->flash();
+          ?>
         
         <?php echo $this->element('usermenu', array('username' => $this->Session->read('User')['User']['username'])); ?>
 

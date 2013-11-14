@@ -3,6 +3,7 @@
 App::uses('Security', 'Utility');
 
 class UsersController extends AppController{
+
 	public function index()
 	{
 		$users = $this->User->find('all'); //Get all the users and store them in a variable
@@ -96,7 +97,7 @@ class UsersController extends AppController{
 	public function logout()
 	{
 		$this->Session->destroy();
-		$this->redirect(array('controller' => 'home', 'action' => 'index'));
+		$this->redirect(array('controller' => 'users', 'action' => 'login'));
 	}
 
 	/*Once the user has logged in, his menu is loaded*/
@@ -106,6 +107,38 @@ class UsersController extends AppController{
 		$this->layout = 'user';
 	}
 
+	/*Edit de user*/
+	public function edituser($id = null)
+	{
+		$this->set('title_for_layout', 'Business Meeting - Actualizar informacion');
+
+		$temp = $this->Session->read('User');
+		if(intval($temp['User']['user_type']) == 1)
+			$this->layout = 'admin';
+		else
+			$this->layout = 'user';
+
+		$this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Usuario incorrecto'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+        	$this->request->data['User']['password'] = $temp['User']['password'];
+        	//pr($this->request->data);
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash('Su información se ha actualizado', 'default', array('class' => 'success'));
+            }
+            else
+            {
+            	$this->Session->setFlash(__('No se ha podido actualizar su información. 
+            	Por favor, inténtelo de nuevo.'));
+            }
+        } else {
+            $this->request->data = $this->User->read(null, $id);
+            unset($this->request->data['User']['password']);
+        }
+	}
+
 	/*In case the user is an admin*/
 	public function adminprofile()
 	{
@@ -113,36 +146,68 @@ class UsersController extends AppController{
 		$this->layout = 'admin';
 	}
 
+	public function editrol()
+	{
+		$this->set('title_for_layout', 'Business Meeting - Editar privilegios');
+		$this->layout = 'admin';
+
+		$users = $this->User->
+			find('list', array('conditions' => array('User.id !=' => $this->Session->read('User')['User']['id'],
+													 'User.user_type !=' => '1')));
+
+		$this->set('users', $users);
+
+        if ($this->request->is('post') || $this->request->is('put')) {
+        	$this->User->id = $this->request->data['User']['user_id'];
+        	if($this->User->saveField('user_type', $this->request->data['User']['rol'],
+        		array('validate' => false, 'callbacks' => false)))
+        	{
+        		$this->Session->setFlash('Su información se ha actualizado', 'default', array('class' => 'success'));
+        	}
+        	else
+        	{
+        		$this->Session->setFlash(__('No se ha podido actualizar su información. 
+            	Por favor, inténtelo de nuevo.'));
+        	}
+        }
+	}
+
 	/*Privacy*/
-	/*Protect views that only a valid user can access*/
+	/*Protected views that only a valid user can access*/
 	public function beforeFilter() {
 		parent::beforeFilter();
 		/*Aquí se validaría lo que hace un administrador y un usuario normal*/
-
 		if(!$this->Session->check('User'))
 		{
 			if($this->request->action == 'login')
 			{
-				
+				//todos pueden ir a login	
 			}
 			elseif ($this->request->action == 'register') {
-				
+				//todos pueden ir a register
 			}
-			else
+			else //en otro caso, se está consultando una página de usuarios o administrador
 			{
 				$this->redirect(array(
 				'controller' => 'users',
-				'action' => 'login'
+				'action' => 'login' //se restringe el acceso y se redirecciona a la págian de login
 				));	
 			}
 		}
-
-		/*if( $this->request->action != 'login' && !$this->Session->check('User') ){
-			$this->redirect(array(
-				'controller' => 'users',
-				'action' => 'login'
-			));
-		}*/
+		else //En caso de que haya sesión activa, restringir a los usuarios las tareas administrativas
+		{
+			$temp = $this->Session->read('User');
+			if(intval($temp['User']['user_type']) == 2) // 2 = Usuario, 1 = Administrador
+			{
+				if($this->request->action == 'editrol')
+				{
+					$this->Session->setFlash('No se ha encontrado la página solicitada.');
+					$this->redirect(array('controller' => 'users',
+					'action' => 'uprofile'
+					));	
+				}
+			}
+		}
 	}
 }
 

@@ -35,8 +35,8 @@ class User extends AppModel{
                                 'message' => 'Please fill in the username'
                 ),
                 'password' => array(
-                                'rule' => array('between', 5, 10),
-                                'message' => 'password must be between 5 and 10 characters long'
+                                'rule' => 'notEmpty',
+                                'message' => 'A password is required'
                 )
         );
 
