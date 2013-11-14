@@ -167,19 +167,11 @@ class UsersController extends AppController{
         		$this->Session->setFlash(__('No se ha podido actualizar su información. 
             	Por favor, inténtelo de nuevo.'));
         	}
-            /*if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash('Su información se ha actualizado', 'default', array('class' => 'success'));
-            }
-            else
-            {
-            	$this->Session->setFlash(__('No se ha podido actualizar su información. 
-            	Por favor, inténtelo de nuevo.'));
-            }*/
         }
 	}
 
 	/*Privacy*/
-	/*Protect views that only a valid user can access*/
+	/*Protected views that only a valid user can access*/
 	public function beforeFilter() {
 		parent::beforeFilter();
 		/*Aquí se validaría lo que hace un administrador y un usuario normal*/
@@ -187,26 +179,33 @@ class UsersController extends AppController{
 		{
 			if($this->request->action == 'login')
 			{
-				
+				//todos pueden ir a login	
 			}
 			elseif ($this->request->action == 'register') {
-				
+				//todos pueden ir a register
 			}
-			else
+			else //en otro caso, se está consultando una página de usuarios o administrador
 			{
 				$this->redirect(array(
 				'controller' => 'users',
-				'action' => 'login'
+				'action' => 'login' //se restringe el acceso y se redirecciona a la págian de login
 				));	
 			}
 		}
-
-		/*if( $this->request->action != 'login' && !$this->Session->check('User') ){
-			$this->redirect(array(
-				'controller' => 'users',
-				'action' => 'login'
-			));
-		}*/
+		else //En caso de que haya sesión activa, restringir a los usuarios las tareas administrativas
+		{
+			$temp = $this->Session->read('User');
+			if(intval($temp['User']['user_type']) == 2) // 2 = Usuario, 1 = Administrador
+			{
+				if($this->request->action == 'editrol')
+				{
+					$this->Session->setFlash('No se ha encontrado la página solicitada.');
+					$this->redirect(array('controller' => 'users',
+					'action' => 'uprofile'
+					));	
+				}
+			}
+		}
 	}
 }
 
