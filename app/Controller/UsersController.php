@@ -150,7 +150,8 @@ class UsersController extends AppController{
 		$this->layout = 'admin';
 
 		$users = $this->User->
-			find('list', array('conditions' => array('User.id !=' => $this->Session->read('User')['User']['id'])));
+			find('list', array('conditions' => array('User.id !=' => $this->Session->read('User')['User']['id'],
+													 'User.user_type !=' => '1')));
 
 		$this->set('users', $users);
 
