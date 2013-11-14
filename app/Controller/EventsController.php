@@ -1,10 +1,14 @@
 <?php
 	class EventsController extends AppController {
 		public function index() {
+			$this->set('title_for_layout','Business Meeting - Eventos');
+			$this ->layout='user';
 			$this->set('events', $this->Event->find('all'));
 		}
 		
 		public function view($id = null) {
+			$this->set('title_for_layout','Business Meeting - Informamación evento');
+			$this ->layout='user';
 			if (!$id) {
 				throw new NotFoundException(__('Invalid event'));
 			}
@@ -21,7 +25,7 @@
 			if ($this->request->is('post')) {
 				$this->Event->create();
 				if ($this->Event->save($this->request->data)) {
-					$this->Session->setFlash(__('Your post has been saved.'));
+					$this->Session->setFlash('Su evento ha sido creado.','default',array('class' => 'success'));
 					return $this->redirect(array('action' => 'index'));
 				}
 				$this->Session->setFlash(__('Unable to add your post.'));
@@ -40,7 +44,8 @@
 			if ($this->request->is(array('event', 'put'))) {
 				$this->Event->id = $id;
 				if ($this->Event->save($this->request->data)) {
-					$this->Session->setFlash(__('Your event has been updated.'));
+					
+					$this->Session->setFlash('Su evento ha sido actualizado.','default',array('class' => 'success'));
 					return $this->redirect(array('action' => 'index'));
 				}
 				$this->Session->setFlash(__('Unable to update your event.'));
