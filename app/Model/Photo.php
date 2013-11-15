@@ -26,11 +26,11 @@ class Photo extends AppModel{
 				'message' => 'Please fill in the name'
 		),
 		'photo' => array(
-				'rule' => 'notEmpty',
-				'message' => 'Please fill in the name'
-		)
-	);
-
+		    'extension' => array(
+		        'rule' => array('extension', array('jpg', 'png', 'gif', 'jpeg')),
+		        'message' => 'Solo se pueden subir archivos de imagen',
+		         )
+		));
 }
 
 ?>
