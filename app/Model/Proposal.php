@@ -1,7 +1,7 @@
 <?php
 	class Proposal extends AppModel {
 		public $hasMany = array(
-            'Sesion', 'Comment', 'Question', 'Resource', 'Review'
+            'Sesion', 'Comment', 'Question', 'Resource', 'Review', 'Speaker'
         );
 		public $belongsTo = array(
            'Event','User'

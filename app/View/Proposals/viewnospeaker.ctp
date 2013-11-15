@@ -35,8 +35,6 @@
 			echo "<p><b>Por ".$usernames_questions[$i]."</b></p> "; 
 			echo "<p>".$questions[$i]."</p>";
 			echo "<p>".$answers[$i]."</p>";	
-			echo $this->Html->link('Responder', array('action' => 'answer','controller'=>'questions', $questions_id[$i], $proposal_id));
-			echo "  ";
 			echo $this->Html->link('Me gusta', array('action' => 'add','controller'=>'favoritequestions', $questions_id[$i], $proposal_id));
 			$i++;
 			echo "<hr>";
@@ -57,8 +55,5 @@
 			echo "<hr>";
 		endwhile;
 	?>
-	<br>
-	<?php echo "<div id='button'> <span>" .$this->Html->link('Subir', array('action' => 'add','controller'=>'resources', $proposal_id)). "</span></div>"; ?>
-	<br>
 	
 </div>
