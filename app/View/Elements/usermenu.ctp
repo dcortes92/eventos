@@ -10,17 +10,18 @@
             echo $this->Html->link('Mi Perfil', array('action' => 'edituser', $temp['User']['id']));
          ?>
       </li>
-      <li class='has-sub'><a href='#'><span>Sesiones</span></a>
-         <ul>
-            <li><a href='#'><span>A-Z</span></a></li>
-            <li class='last'><a href='#'><span>Por Fecha</span></a></li>
-         </ul>
+      <li>
+         <span>
+            <?php echo $this->Html->link('Sesiones', array('controller' => 'sesions', 'action' => 'index')) ?>
+         </span>
       </li>
       <li class='has-sub'><a href='#'><span>Favoritos</span></a>
          <ul>
-            <li><a href='#'><span>Por Fecha</span></a></li>
-            <li><a href='#'><span>Por Sesion</span></a></li>
-            <li class='last'><a href='#'><span>Por Tipo</span></a></li>
+            <li><a href='#'><span>Comentarios</span></a></li>
+            <li><a href='#'><span>Preguntas</span></a></li>
+            <li><a href='#'><span>Recursos</span></a></li>
+            <li><a href='#'><span>Por Propuestas</span></a></li>
+            <li class='last'><a href='#'><span>Por Sesiones</span></a></li>
          </ul>
       </li>
       <li class='last'><a href='#'><span>Mis Propuestas</span></a></li>

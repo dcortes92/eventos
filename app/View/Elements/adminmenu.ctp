@@ -4,6 +4,12 @@
 
 <div id="cssmenu">
    <ul>
+      <li>
+         <?php
+            $temp = $this->Session->read('User');
+            echo $this->Html->link('Mi Perfil', array('action' => 'edituser', $temp['User']['id']));
+         ?>
+      </li>
       <li><a href='#'><span>Eventos</span></a></li>
       <li><a href='#'><span>Propuestas</span></a></li>
       <li><a href='#'><span>Sesiones</span></a></li>
