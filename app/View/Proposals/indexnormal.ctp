@@ -6,7 +6,7 @@
 	<table class='TableResult'>
 		<tr>
 			<th> T&iacute;tulo </th>
-			<th colspan="5">Acciones</th>
+			<th colspan="4">Acciones</th>
 		</tr>
 
 	<!-- Here's where we loop through our $events array, printing out post info -->
@@ -38,14 +38,6 @@
 			<td>
 				<?php echo $this->Html->link('Comentar', array(
 					'controller' => 'comments',
-					'action' => 'add'
-					, $proposal['Proposal']['id'])); 
-				?>
-
-			</td>
-			<td>
-				<?php echo $this->Html->link('Agregar Recurso', array(
-					'controller' => 'resources',
 					'action' => 'add'
 					, $proposal['Proposal']['id'])); 
 				?>

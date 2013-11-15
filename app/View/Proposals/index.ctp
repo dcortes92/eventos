@@ -7,7 +7,7 @@
 	<table class='TableResult'>
 		<tr>
 			<th>Nombre</th>
-			<th colspan="8">Acciones</th>
+			<th colspan="7">Acciones</th>
 		</tr>
 
 	<!-- Here's where we loop through our $proposals array, printing out post info -->
@@ -47,13 +47,6 @@
 					, $proposal['Proposal']['id'])); 
 				?>
 
-			</td>
-			<td>
-				<?php echo $this->Html->link('Agregar Recurso', array(
-					'controller' => 'resources',
-					'action' => 'add'
-					, $proposal['Proposal']['id'])); 
-				?>
 
 			</td>
 			<td>
