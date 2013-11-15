@@ -29,6 +29,13 @@
 			$users = $this->Photo->User->find('list'); //List return a numeric array with the ids
 			if ($this->request->is('post')) {
 				$this->Photo->create();
+				
+				$filename = WWW_ROOT.'files'.DS.$this->request->data['Photo']['photo']['name'];
+				move_uploaded_file($this->request->data['Photo']['photo']['tmp_name'], $filename);
+
+				die;
+				$this->request->data['Photo']['photo'] = $filename;
+
 				if ($this->Photo->save($this->request->data)) {
 					$this->Session->setFlash('La foto ha sido creada.','default',array('class' => 'success'));
 					return $this->redirect(array('action' => 'index'));
