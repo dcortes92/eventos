@@ -2,9 +2,26 @@
 	class SesionsController extends AppController {
 		//Pueden verlo solo administradores
 		public function index() {
+			$type = intval($this->Session->read('User')['User']['user_type']);	
+			if($type == 1) //Admin
+			{
+				$this->set('title_for_layout','Business Meeting - Sesiones');
+			$this ->layout='user';
+			$this->set('sesions', $this->Sesion->find('all'));
+			}
+			else if($type==2){
+				$this->redirect(array(
+					'controller' => 'sesions',
+					'action' => 'indexnormal'
+				));
+			}
+			
+		}
+		public function indexnormal() {
 			$this->set('title_for_layout','Business Meeting - Sesiones');
 			$this ->layout='user';
 			$this->set('sesions', $this->Sesion->find('all'));
+			
 		}
 		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
@@ -17,6 +34,10 @@
 			if (!$sesion) {
 				throw new NotFoundException(__('Invalid sesion'));
 			}
+			$event_id= $sesion['Proposal']['event_id'];
+			pr($event_id);
+			$event = $this->Sesion->Proposal->Event->find('all',array('conditions' => array('Event.id' =>$event_id)));
+			$this->set('event',$event);
 			$this->set('sesion', $sesion);
 		}
 		//Pueden verlo solo administradores
@@ -39,8 +60,11 @@
 				$this->Sesion->create();
 				if ($this->Sesion->save($this->request->data)) {
 					$this->Session->setFlash('La Sesión ha sido creada.','default',array('class' => 'success'));
+					return $this->redirect(array('action' => 'index'));
 				}
-				$this->Session->setFlash(__('Unable to add your post.'));
+				else{
+					$this->Session->setFlash(__('Unable to add your post.'));
+				}
 			}
 			$this->set('proposal_id',$id);
             $this->set('halls', $halls);

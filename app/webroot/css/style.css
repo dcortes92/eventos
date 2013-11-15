@@ -819,7 +819,7 @@ footer .aligncenter {
   min-height: 30px;	
 }
 
-#UserBio, #EventDescription, #ProposalDescription, #SesionDescription {
+#UserBio, #EventDescription, #ProposalDescription, #SesionDescription, #CommentComment {
 	width: 100%;
 }
 

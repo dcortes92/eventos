@@ -3,9 +3,11 @@
 	class UrlsController extends AppController{
 		//Pueden verlo solo administradores
 		public function index() {
+			$user_id= $this -> Session -> read("User")['User']['id'];
+			$urls =$this->Url->find('all',array('conditions' => array('Url.user_id' =>$user_id)));
 			$this->set('title_for_layout','Business Meeting - Urls');
 			$this ->layout='user';
-			$this->set('urls', $this->Url->find('all'));
+			$this->set('urls', $urls);
 		}
 		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
@@ -24,7 +26,7 @@
 		 public function add() {
 			$this->set('title_for_layout','Business Meeting - Agregar Url');
 			$this ->layout='user';
-			$users = $this->Url->User->find('list'); //List return a numeric array with the ids
+			$users= $this->Url->User->find('list');
 			if ($this->request->is('post')) {
 				$this->Url->create();
 				if ($this->Url->save($this->request->data)) {

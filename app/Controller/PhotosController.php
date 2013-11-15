@@ -3,9 +3,11 @@
 	class PhotosController extends AppController{
 		//Pueden verlo solo administradores
 		public function index() {
+			$user_id= $this -> Session -> read("User")['User']['id'];
+			$photos = $this->Photo->find('all',array('conditions' => array('Photo.user_id' =>$user_id)));
 			$this->set('title_for_layout','Business Meeting - Fotos');
 			$this ->layout='user';
-			$this->set('photos', $this->Photo->find('all'));
+			$this->set('photos', $photos);
 		}
 		//Pueden verlo administradores y usuarios
 		public function view($id = null) {

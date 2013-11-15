@@ -2,9 +2,26 @@
 	class HallsController extends AppController {
 		//Pueden verlo solo administradores
 		public function index() {
+			$type = intval($this->Session->read('User')['User']['user_type']);	
+			if($type == 1) //Admin
+			{
+				$this->set('title_for_layout','Business Meeting - Salones');
+			$this ->layout='user';
+			$this->set('halls', $this->Hall->find('all'));
+			}
+			else if($type==2){
+				$this->redirect(array(
+					'controller' => 'halls',
+					'action' => 'indexnormal'
+				));
+			}
+			
+		}
+		public function indexnormal() {
 			$this->set('title_for_layout','Business Meeting - Salones');
 			$this ->layout='user';
 			$this->set('halls', $this->Hall->find('all'));
+			
 		}
 		//Pueden verlo administradores y usuarios
 		public function view($id = null) {

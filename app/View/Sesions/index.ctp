@@ -4,8 +4,7 @@
 
 <table class='TableResult'>
     <tr>
-        <th>Id</th>
-        <th>Name</th>
+        <th>Nombre</th>
         <th colspan="2">Actions</th>
     </tr>
 
@@ -20,7 +19,7 @@
             <?php echo $this->Form->postLink(
                 'Borrar',
                 array('action' => 'delete', $sesion['Sesion']['id']),
-                array('confirm' => 'Are you sure?'));
+                array('confirm' => 'Esta seguro?'));
             ?>
 		</td>
 		<td>
@@ -31,5 +30,5 @@
 
 </table>
 <br>
-<div id="button"><span><?php echo $this->Html->link('Crear', array('action' => 'add')); ?></span></div>
+<div id="button"><span><?php echo $this->Html->link('Crear', array('action' => 'selectproposal')); ?></span></div>
 </div>

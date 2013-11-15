@@ -18,13 +18,13 @@
 			</td>
 			<td>
 				<?php echo $this->Form->postLink(
-					'Delete',
+					'Borrar',
 					array('action' => 'delete', $event['Event']['id']),
-					array('confirm' => 'Are you sure?'));
+					array('confirm' => '¿Esta seguro?'));
 				?>
 			</td>
 			<td>
-				<?php echo $this->Html->link('Edit', array('action' => 'edit', $event['Event']['id'])); ?>
+				<?php echo $this->Html->link('Editar', array('action' => 'edit', $event['Event']['id'])); ?>
 			</td>
 		</tr>
 		<?php endforeach; ?>

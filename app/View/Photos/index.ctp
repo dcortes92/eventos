@@ -17,13 +17,13 @@
         </td>
         <td>
             <?php echo $this->Form->postLink(
-                'Delete',
+                'Borrar',
                 array('action' => 'delete', $photo['Photo']['id']),
-                array('confirm' => 'Are you sure?'));
+                array('confirm' => 'Esta seguro?'));
             ?>
 		</td>
 		<td>
-            <?php echo $this->Html->link('Edit', array('action' => 'edit', $photo['Photo']['id'])); ?>
+            <?php echo $this->Html->link('Editar', array('action' => 'edit', $photo['Photo']['id'])); ?>
         </td>
     </tr>
     <?php endforeach; ?>

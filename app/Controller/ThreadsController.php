@@ -2,9 +2,26 @@
 	class ThreadsController extends AppController {
 		//Pueden verlo solo administradores
 		public function index() {
+			$type = intval($this->Session->read('User')['User']['user_type']);	
+			if($type == 1) //Admin
+			{
+				$this->set('title_for_layout','Business Meeting - Hilos');
+				$this ->layout='admin';
+				$this->set('threads', $this->Thread->find('all'));
+			}
+			else if($type==2){
+				$this->redirect(array(
+					'controller' => 'threads',
+					'action' => 'indexnormal'
+				));
+			}
+			
+		}
+		public function indexnormal() {
 			$this->set('title_for_layout','Business Meeting - Hilos');
 			$this ->layout='admin';
 			$this->set('threads', $this->Thread->find('all'));
+			
 		}
 		//Pueden verlo administradores y usuarios
 		public function view($id = null) {

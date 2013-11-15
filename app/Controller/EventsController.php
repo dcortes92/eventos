@@ -2,9 +2,26 @@
 	class EventsController extends AppController {
 		//Pueden verlo solo administradores
 		public function index() {
+			$type = intval($this->Session->read('User')['User']['user_type']);	
+			if($type == 1) //Admin
+			{
+				$this->set('title_for_layout','Business Meeting - Eventos');
+				$this ->layout='admin';
+				$this->set('events', $this->Event->find('all'));
+			}
+			else if($type==2){
+				$this->redirect(array(
+					'controller' => 'events',
+					'action' => 'indexnormal'
+				));
+			}
+			
+		}
+		public function indexnormal() {
 			$this->set('title_for_layout','Business Meeting - Eventos');
 			$this ->layout='admin';
 			$this->set('events', $this->Event->find('all'));
+			
 		}
 		//Pueden verlo  administradores y  usuarios
 		public function view($id = null) {
@@ -67,7 +84,7 @@
 			}
 
 			if ($this->Event->delete($id)) {
-				$this->Session->setFlash(__('The event with id: %s has been deleted.', h($id)));
+				$this->Session->setFlash('Su evento ha sido borrado.','default',array('class' => 'success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 		}
@@ -86,12 +103,12 @@
 			else //Usuario activo
 			{
 				$temp = $this->Session->read('User');
-				if(intval($temp['User']['user_type']) == 2) // 2 = Usuario, 1 = Administrador
+				/*if(intval($temp['User']['user_type']) == 2) // 2 = Usuario, 1 = Administrador
 				{
 					$this->Session->setFlash('No se ha encontrado la página solicitada.');
 					$this->redirect(array('controller' => 'users',
 					'action' => 'uprofile'));	
-				}
+				}*/
 			}
 		}
 	}

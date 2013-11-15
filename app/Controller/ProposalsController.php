@@ -2,6 +2,25 @@
 	class ProposalsController extends AppController {
 		//Pueden verlo solo administradores
 		public function index() {
+			$type = intval($this->Session->read('User')['User']['user_type']);	
+			
+			
+			if($type == 1) //Admin
+			{
+				
+				$this->set('title_for_layout','Business Meeting - Propuestas');
+				$this ->layout='admin';
+				$proposals=$this->Proposal->find('all');
+				$this->set('proposals', $proposals);
+			}
+			else if($type==2){
+				$this->redirect(array(
+					'controller' => 'proposals',
+					'action' => 'indexnormal'
+				));
+			}
+		}
+		public function indexnormal() {
 			$this->set('title_for_layout','Business Meeting - Propuestas');
 			$this ->layout='admin';
 			$this->set('proposals', $this->Proposal->find('all'));

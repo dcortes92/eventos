@@ -4,7 +4,7 @@
 	<?php
 		echo $this->Form->create(array('id' => 'UserLoginForm'));
 		echo $this->Form->input('title',array('label' => 'Titulo'));
-		echo $this->Form->input('description', array('rows' => '3',label' => 'Descripcion'));
-		echo $this->Form->end('Save Event');
+		echo $this->Form->input('description', array('rows' => '3','label' => 'Descripcion'));
+		echo $this->Form->end('Crear');
 	?>
 </br>
