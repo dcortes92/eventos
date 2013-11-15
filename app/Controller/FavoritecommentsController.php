@@ -6,7 +6,11 @@
 			$user_id= $this -> Session -> read("User")['User']['id'];
 			$favoritecomments = $this->Favoritecomment->find('all',array('conditions' => array('Favoritecomment.user_id' =>$user_id)));
 			$this->set('title_for_layout','Business Meeting - Comentario Favoritos');
-			$this ->layout='user';
+			$temp = $this->Session->read('User');
+			if(intval($temp['User']['user_type']) == 1)
+				$this->layout = 'admin';
+			else
+				$this->layout = 'user';
 			$this->set('favoritecomments', $favoritecomments);
 		}
 		//Pueden verlo administradores y usuarios
@@ -54,6 +58,20 @@
 				return $this->redirect(array('action' => 'index', 'controller' => 'comments'));
 			}
 		}
+
+		/*Privacy*/
+	/*Protected views that only a valid user can access*/
+	public function beforeFilter() {
+		parent::beforeFilter();
+		/*Aquí se validaría lo que hace un administrador y un usuario normal*/
+		if(!$this->Session->check('User'))
+		{
+			$this->redirect(array(
+			'controller' => 'users',
+			'action' => 'login' //se restringe el acceso y se redirecciona a la págian de login
+			));	
+		}
+	}
 }
 
 ?>

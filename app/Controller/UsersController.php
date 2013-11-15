@@ -45,6 +45,30 @@ class UsersController extends AppController{
 
 	public function login()
 	{
+		$is_active = $this->Session->read('User'); //preguntamos si hay una sesión activa
+		if($is_active)
+		{
+			$type = intval($is_active['User']['user_type']);
+				
+				if($type == 1) //Admin
+				{
+					$this->redirect(array(
+					'controller' => 'users',
+					'action' => 'adminprofile'
+					));
+				}
+				else if($type == 2) //Regular user
+				{
+					$this->redirect(array(
+					'controller' => 'users',
+					'action' => 'uprofile'
+					));
+				}
+				else
+				{
+					$this->Session->setFlash('Error desconocido.');
+				}
+		}
 		$this->set('title_for_layout', 'Business Meeting - Login');
 		if($this->request->is('post'))
 		{
