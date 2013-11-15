@@ -30,8 +30,12 @@
 			$temp = $this->Session->read('User');
 			if(intval($temp['User']['user_type']) == 1)
 				$this->layout = 'admin';
-			else
+			if (intval($temp['User']['user_type']) == 2) { 
 				$this->layout = 'user';
+			}
+
+			//en caso de ser invitado no carga ningun layout
+				
 			if (!$id) {
 				throw new NotFoundException(__('Invalid event'));
 			}
@@ -101,10 +105,17 @@
 			/*Aquí se validaría lo que hace un administrador y un usuario normal*/
 			if(!$this->Session->check('User'))
 			{
-				$this->redirect(array(
-				'controller' => 'users',
-				'action' => 'login' //se restringe el acceso y se redirecciona a la págian de login
-				));	
+				if($this->request->action =='view')
+				{
+					//La acción view es pública
+				}
+				else
+				{
+					$this->redirect(array(
+					'controller' => 'users',
+					'action' => 'login' //se restringe el acceso y se redirecciona a la págian de login
+					));		
+				}				
 			}
 			else //En caso de que haya sesión activa, restringir a los usuarios las tareas administrativas
 			{
