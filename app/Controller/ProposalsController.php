@@ -106,7 +106,8 @@
 			$this ->layout='admin';
 			$events = $this->Proposal->Event->find('list');
 			
-			//$proposals = $this->Proposal->find('list');
+            $this->set('events', $events);
+			$this->set('user_id',$user_id);
 			
 			if ($this->request->is('post')) {
 				$this->Proposal->create();
@@ -116,10 +117,7 @@
 				}
 				$this->Session->setFlash(__('Unable to add your post.'));
 			}
-			//$this->set('proposals', $proposals);
-
-            $this->set('events', $events);
-			$this->set('user_id',$user_id);
+			//$this->set('proposals', $proposals)
 		}
 		//Pueden verlo solo administradores
 		public function edit($id = null) {

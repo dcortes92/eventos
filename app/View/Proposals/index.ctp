@@ -2,19 +2,30 @@
 
 	<br>
 	<h2>Propuestas</h2>
-	
+</div>
+
 	<table class='TableResult'>
 		<tr>
 			<th>Nombre</th>
-			<th colspan="6">Acciones</th>
+			<th colspan="8">Acciones</th>
 		</tr>
 
 	<!-- Here's where we loop through our $proposals array, printing out post info -->
-
 		<?php foreach ($proposals as $proposal): ?>
 		<tr>
 			<td>
 				<?php echo $this->Html->link($proposal['Proposal']['name'], array('action' => 'view', $proposal['Proposal']['id'])); ?>
+
+				<?php 
+					$reviews = $proposal['Review'];
+					$count = count($reviews);
+					$acumulado = 0;
+					foreach ($reviews as $review) {
+						$acumulado = $acumulado + floatval($review['review']);
+					}
+
+					echo "<br><br>Calificación ".number_format($acumulado / $count, 2);
+				?>
 			</td>
 			<td>
 				<?php echo $this->Form->postLink(
@@ -78,6 +89,7 @@
 		<?php endforeach; ?>
 
 	</table>
+<div class='inside'>
 	<br>
 	<br>
 	<div id="button"> <span><?php echo $this->Html->link('Crear', array('action' => 'add')); ?></span></div>
