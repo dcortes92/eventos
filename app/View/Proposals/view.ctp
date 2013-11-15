@@ -1,6 +1,9 @@
 <div class="inside">
 <br>
-	<h2> Ver Propuesta </h2>
+	<h2> Ver Propuesta </h2> 
+	<?php echo $this->Html->link('Me gusta', array('action' => 'add','controller'=>'favoriteproposals', $proposal_id));?>
+	<br>
+	<br>
 	<h4> Titulo </h4>
 	<p><?php echo h($proposal['Proposal']['name']); ?></p>
 	<h4> Descripcion </h4>

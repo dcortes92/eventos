@@ -35,10 +35,11 @@
 				throw new NotFoundException(__('Invalid sesion'));
 			}
 			$event_id= $sesion['Proposal']['event_id'];
-			pr($event_id);
+			
 			$event = $this->Sesion->Proposal->Event->find('all',array('conditions' => array('Event.id' =>$event_id)));
 			$this->set('event',$event);
 			$this->set('sesion', $sesion);
+			$this->set('sesion_id',$sesion['Sesion']['id']);
 		}
 		//Pueden verlo solo administradores
 		 public function selectproposal(){
