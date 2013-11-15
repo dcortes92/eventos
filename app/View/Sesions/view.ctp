@@ -1,6 +1,9 @@
 <div class="inside">
 <br>
 	<h2> Ver Sesion </h2>
+	<?php echo $this->Html->link('Me gusta', array('action' => 'add','controller'=>'favoritesesions', $sesion_id));?>
+	<br>
+	<br>
 	<h4> Nombre </h4>
 	<p><?php echo h($sesion['Sesion']['name']); ?></p>
 	<h4> Fecha </h4>
