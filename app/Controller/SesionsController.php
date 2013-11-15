@@ -6,8 +6,8 @@
 			if($type == 1) //Admin
 			{
 				$this->set('title_for_layout','Business Meeting - Sesiones');
-			$this ->layout='user';
-			$this->set('sesions', $this->Sesion->find('all'));
+				$this ->layout='admin';
+				$this->set('sesions', $this->Sesion->find('all'));
 			}
 			else if($type==2){
 				$this->redirect(array(

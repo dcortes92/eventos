@@ -52,11 +52,13 @@
 			if ($this->request->is('post')) {
 				$this->Event->create();
 				if ($this->Event->save($this->request->data)) {
-					pr($this->request->data);
 					$this->Session->setFlash('Su evento ha sido creado.','default',array('class' => 'success'));
 					//return $this->redirect(array('action' => 'index'));
 				}
-				$this->Session->setFlash(__('Unable to add your post.'));
+				else
+				{
+					$this->Session->setFlash(__('Unable to add your post.'));
+				}
 			}
 		}
 		//Pueden verlo solo administradores
