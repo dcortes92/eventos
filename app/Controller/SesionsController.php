@@ -149,13 +149,13 @@
 						'action' => 'uprofile'
 						));	
 					}
-					if($this->request->action == 'view')
+					/*if($this->request->action == 'index')
 					{
 						$this->Session->setFlash('No se ha encontrado la página solicitada.');
 						$this->redirect(array('controller' => 'users',
 						'action' => 'uprofile'
 						));	
-					}
+					}*/
 					if($this->request->action == 'selectproposal')
 					{
 						$this->Session->setFlash('No se ha encontrado la página solicitada.');
