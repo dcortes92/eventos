@@ -14,7 +14,7 @@ class User extends AppModel{
 
         /*Asossiation with Products*/
         public $hasMany = array(
-                'Url','Photo'
+                'Url','Photo','Comment','Speaker','Favoritecomment','Proposal'
         );
 
         public $validate = array(
