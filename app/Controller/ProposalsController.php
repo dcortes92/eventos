@@ -3,8 +3,6 @@
 		//Pueden verlo solo administradores
 		public function index() {
 			$type = intval($this->Session->read('User')['User']['user_type']);	
-			
-			
 			if($type == 1) //Admin
 			{
 				
@@ -99,6 +97,82 @@
 			$this->set('resources_id',$resources_id);
 			$this->set('largoResources',$largoResources);
 		}
+		
+		//Pueden verlo administradores y usuarios
+		public function viewnotspeaker($id = null) {
+			
+			$this->set('title_for_layout','Business Meeting - Ver Propuesta');
+			$this ->layout='user';
+			if (!$id) {
+				throw new NotFoundException(__('Invalid proposal'));
+			}
+			$proposal = $this->Proposal->findById($id);
+			if (!$proposal) {
+				throw new NotFoundException(__('Invalid proposal'));
+			}
+			$commentsfull = $proposal['Comment'];
+			$questionsfull = $proposal['Question'];
+			$resourcesfull= $proposal['Resource'];
+			//pr($commentsfull);
+			$comments=[];
+			$questions=[];
+			$answers=[];
+			$usernames=[];
+			$usernames_questions=[];
+			$comments_id=[];
+			$questions_id=[];
+			
+			$resources=[];
+			$resources_id=[];
+			$usernames_resources=[];
+			
+			
+			foreach($commentsfull as $comment){
+				array_push($comments,$comment['comment']);
+				array_push($comments_id,$comment['id']);
+				$user_id= $comment['user_id'];
+				$user = $this->Proposal->User->find('all',array('conditions' => array('User.id' =>$user_id)));
+				array_push($usernames,$user[0]['User']['username']);
+			}
+			foreach($questionsfull as $question){
+				array_push($questions,$question['question']);
+				array_push($answers,$question['answer']);
+				array_push($questions_id,$question['id']);
+				$user_id= $question['user_id'];
+				$user = $this->Proposal->User->find('all',array('conditions' => array('User.id' =>$user_id)));
+				array_push($usernames_questions,$user[0]['User']['username']);
+			}
+			
+			foreach($resourcesfull as $resource){
+				array_push($resources,$resource['link']);
+				array_push($resources_id,$resource['id']);
+				$user_id= $resource['user_id'];
+				$user = $this->Proposal->User->find('all',array('conditions' => array('User.id' =>$user_id)));
+				array_push($usernames_resources,$user[0]['User']['username']);
+			}
+			//pr($comments);
+			$largo=count($usernames);
+			$this->set('usernames',$usernames);
+			$this->set('comments',$comments);
+			$this->set('comments_id',$comments_id);
+			$this->set('proposal', $proposal);
+			$this->set('largo',$largo);
+			$this->set('proposal_id',$id);
+			
+			$largoQuestions=count($usernames_questions);
+			$this->set('usernames_questions',$usernames_questions);
+			$this->set('answers',$answers);
+			$this->set('questions_id',$questions_id);
+			$this->set('questions', $questions);
+			$this->set('largoQuestions',$largoQuestions);
+			
+			$largoResources=count($usernames_resources);
+			$this->set('usernames_resources',$usernames_resources);
+			$this->set('resources',$resources);
+			$this->set('resources_id',$resources_id);
+			$this->set('largoResources',$largoResources);
+		}
+		
 		//Pueden verlo solo administradores
 		 public function add() {
 			$user_id= $this -> Session -> read("User")['User']['id'];
