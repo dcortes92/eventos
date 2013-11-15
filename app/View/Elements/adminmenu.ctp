@@ -12,11 +12,27 @@
       </li>
       <li class = 'has-sub'><a href="#">Administrar</a>
          <ul>
-            <li><a href='#'><span>Eventos</span></a></li>
-            <li><a href='#'><span>Sesiones</span></a></li>
-            <li><a href='#'><span>Hilos</span></a></li>
-            <li><a href='#'><span>Salones</span></a></li>
             <li>
+               <?php
+                  echo $this->Html->link('Eventos', array('controller' => 'events', 'action' => 'index'));
+               ?>
+            </li>
+            <li>
+               <?php
+                  echo $this->Html->link('Sesiones', array('controller' => 'sesions', 'action' => 'index'));
+               ?>
+            </li>
+            <li>
+               <?php
+                  echo $this->Html->link('Hilos', array('controller' => 'threads', 'action' => 'index'));
+               ?>
+            </li>
+            <li>
+               <?php
+                  echo $this->Html->link('Salones', array('controller' => 'halls', 'action' => 'index'));
+               ?>
+            </li>
+            <li class='last'>
                <span>
                   <?php echo $this->Html->link('Permisos', 
                      array('controller' => 'users', 'action' => 'editrol')) ?>
@@ -25,7 +41,11 @@
          </ul>
       </li>
       <li>
-         <li><a href='#'><span>Propuestas</span></a></li>
+         <li>
+            <?php
+                  echo $this->Html->link('Propuestas', array('controller' => 'proposals', 'action' => 'index'));
+               ?>
+         </li>
       </li>
       <li class='last'>
          <span>
