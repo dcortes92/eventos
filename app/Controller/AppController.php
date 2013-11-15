@@ -32,4 +32,12 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+	/*Carga información de la base de datos en los elementos*/
+	public function beforeFilter() {
+    	parent::beforeFilter();
+    	$this->loadModel('Event');
+    	$eventos_activos = $this->Event->find('all');
+    	$this->set('eventos_activos', $eventos_activos);
+	}
 }

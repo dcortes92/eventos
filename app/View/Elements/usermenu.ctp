@@ -7,21 +7,55 @@
       <li>
          <?php
             $temp = $this->Session->read('User');
-            echo $this->Html->link('Mi Perfil', array('action' => 'edituser', $temp['User']['id']));
+            echo $this->Html->link('Mi Perfil', array('controller' => 'users', 'action' => 'edituser', $temp['User']['id']));
          ?>
       </li>
-      <li>
-         <span>
-            <?php echo $this->Html->link('Sesiones', array('controller' => 'sesions', 'action' => 'index')) ?>
-         </span>
+      <li class='has-sub'><a href="#"><span>Actividades</span></a>
+         <ul> 
+            <li>
+               <span>
+                  <?php echo $this->Html->link('Sesiones', array('controller' => 'sesions', 'action' => 'index')) ?>
+               </span>
+            </li>
+            <li>
+               <span>
+                  <?php echo $this->Html->link('Eventos', array('controller' => 'events', 'action' => 'index')) ?>
+               </span>
+            </li>
+            <li class='last'>
+               <span>
+                  <?php echo $this->Html->link('Hilos', array('controller' => 'threads', 'action' => 'index')) ?>
+               </span>
+            </li>
+         </ul>
       </li>
       <li class='has-sub'><a href='#'><span>Favoritos</span></a>
          <ul>
-            <li><a href='#'><span>Comentarios</span></a></li>
-            <li><a href='#'><span>Preguntas</span></a></li>
-            <li><a href='#'><span>Recursos</span></a></li>
-            <li><a href='#'><span>Por Propuestas</span></a></li>
-            <li class='last'><a href='#'><span>Por Sesiones</span></a></li>
+            <li>
+               <span>
+                  <?php echo $this->Html->link('Comentarios', array('controller' => 'favoritecomments', 'action' => 'index')) ?>
+               </span>
+            </li>
+            <li>
+               <span>
+                  <?php echo $this->Html->link('Preguntas', array('controller' => 'questions', 'action' => 'index')) ?>
+               </span>
+            </li>
+            <li>
+               <span>
+                  <?php echo $this->Html->link('Recursos', array('controller' => 'resources', 'action' => 'index')) ?>
+               </span>
+            </li>
+            <li>
+               <span>
+                  <?php echo $this->Html->link('Por Propuestas', array('controller' => 'proposals', 'action' => 'index')) ?>
+               </span>
+            </li>
+            <li class='last'>
+               <span>
+                  <?php echo $this->Html->link('Por Sesiones', array('controller' => 'sesions', 'action' => 'index')) ?>
+               </span>
+            </li>
          </ul>
       </li>
       <li class='last'><a href='#'><span>Mis Propuestas</span></a></li>

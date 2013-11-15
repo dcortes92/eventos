@@ -48,7 +48,7 @@
          <h3>Enlaces r&aacute;pidos</h3>
          <?php echo $this->element('sidemenu')?>
          
-         <h2>Pr&oacute;ximos <span>Eventos</span></h2>
+         <h2>Eventos <span>Activos</span></h2>
          <?php echo $this->element('events')?>
       </aside>
       <!-- content -->
