@@ -14,6 +14,11 @@
          <ul> 
             <li>
                <span>
+                  <?php echo $this->Html->link('Propuestas', array('controller' => 'proposals', 'action' => 'index')) ?>
+               </span>
+            </li>
+            <li>
+               <span>
                   <?php echo $this->Html->link('Sesiones', array('controller' => 'sesions', 'action' => 'index')) ?>
                </span>
             </li>

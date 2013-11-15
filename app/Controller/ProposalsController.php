@@ -22,7 +22,7 @@
 		}
 		public function indexnormal() {
 			$this->set('title_for_layout','Business Meeting - Propuestas');
-			$this ->layout='admin';
+			$this ->layout='user';
 			$this->set('proposals', $this->Proposal->find('all'));
 		}
 		//Pueden verlo administradores y usuarios

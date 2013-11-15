@@ -19,6 +19,9 @@
 				<?php 
 					$reviews = $proposal['Review'];
 					$count = count($reviews);
+					if ($count == 0) {
+						$count = 1;
+					}
 					$acumulado = 0;
 					foreach ($reviews as $review) {
 						$acumulado = $acumulado + floatval($review['review']);
