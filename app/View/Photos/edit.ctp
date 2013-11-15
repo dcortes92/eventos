@@ -4,6 +4,5 @@
 <?php
 echo $this->Form->create(array('id' => 'UserLoginForm'));
 echo $this->Form->input('title',array('label' => 'Titulo'));
-echo $this->Form->input('photo', array('rows' => '3','label' => 'Foto'));
 echo $this->Form->end('Salvar');
 ?>

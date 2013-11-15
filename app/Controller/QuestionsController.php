@@ -18,7 +18,11 @@
 		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Pregunta');
-			$this ->layout='user';
+			$temp = $this->Session->read('User');
+			if(intval($temp['User']['user_type']) == 1)
+				$this->layout = 'admin';
+			else
+				$this->layout = 'user';
 			if (!$id) {
 				throw new NotFoundException(__('Invalid question'));
 			}
@@ -31,9 +35,11 @@
 		//Pueden verlo todos los usuarios, se accede desde propuestas
 		 public function add($id=null) {
 			$this->set('title_for_layout','Business Meeting - Agregar Pregunta');
-			$this ->layout='admin';
-			
-			//$questions = $this->Question->find('list');
+			$temp = $this->Session->read('User');
+			if(intval($temp['User']['user_type']) == 1)
+				$this->layout = 'admin';
+			else
+				$this->layout = 'user';
 			
 			if ($this->request->is('post')) {
 				$this->Question->create();
@@ -81,6 +87,41 @@
 			if ($this->Question->delete($id)) {
 				$this->Session->setFlash('El pregunta ha sido borrado.','default',array('class' => 'success'));
 				return $this->redirect(array('action' => 'index'));
+			}
+		}
+
+		/*Privacy*/
+		/*Protected views that only a valid user can access*/
+		public function beforeFilter() {
+			parent::beforeFilter();
+			/*Aquí se validaría lo que hace un administrador y un usuario normal*/
+			if(!$this->Session->check('User'))
+			{
+				$this->redirect(array(
+				'controller' => 'users',
+				'action' => 'login' //se restringe el acceso y se redirecciona a la págian de login
+				));	
+			}
+			else //En caso de que haya sesión activa, restringir a los usuarios las tareas administrativas
+			{
+				$temp = $this->Session->read('User');
+				if(intval($temp['User']['user_type']) == 2) // 2 = Usuario, 1 = Administrador
+				{
+					if($this->request->action == 'delete')
+					{
+						$this->Session->setFlash('No se ha encontrado la página solicitada.');
+						$this->redirect(array('controller' => 'users',
+						'action' => 'uprofile'
+						));	
+					}
+					if($this->request->action == 'edit')
+					{
+						$this->Session->setFlash('No se ha encontrado la página solicitada.');
+						$this->redirect(array('controller' => 'users',
+						'action' => 'uprofile'
+						));	
+					}	
+				}
 			}
 		}
 	}

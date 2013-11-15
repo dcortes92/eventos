@@ -4,7 +4,7 @@
            'Proposal'
         );
 		public $validate = array(
-			'resource' => array('rule' => 'notEmpty')
+			'resource' => array('rule' => 'notEmpty'),
 		);
 	}
 ?>
