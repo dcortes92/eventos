@@ -14,6 +14,11 @@
          <ul> 
             <li>
                <span>
+                  <?php echo $this->Html->link('Propuestas', array('controller' => 'proposals', 'action' => 'index')) ?>
+               </span>
+            </li>
+            <li>
+               <span>
                   <?php echo $this->Html->link('Sesiones', array('controller' => 'sesions', 'action' => 'index')) ?>
                </span>
             </li>
@@ -58,7 +63,11 @@
             </li>
          </ul>
       </li>
-      <li class='last'><a href='#'><span>Mis Propuestas</span></a></li>
+      <li class='last'>
+         <span>
+            <?php echo $this->Html->link('Mis Propuestas', array('controller' => 'proposals', 'action' => 'mispropuestas')) ?>
+         </span>
+      </li>
       <li class='last'><span><?php echo $this->Html->link('Salir ('.$username.')', array('controller' => 'users', 'action' => 'logout')) ?></span></li>
    </ul>
 </div>

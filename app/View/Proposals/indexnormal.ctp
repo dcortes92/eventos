@@ -15,6 +15,22 @@
 		<tr>
 			<td>
 				<?php echo $proposal['Proposal']['name']; ?>
+
+				<?php 
+					$reviews = $proposal['Review'];
+					$count = count($reviews);
+
+					if ($count == 0) {
+						$count = 1;
+					}
+
+					$acumulado = 0;
+					foreach ($reviews as $review) {
+						$acumulado = $acumulado + floatval($review['review']);
+					}
+
+					echo "<br><br>Calificación ".number_format($acumulado / $count, 2);
+				?>
 			</td>
 			<td>
 				<?php echo $this->Html->link('Ver', array('action' => 'view', $proposal['Proposal']['id'])); ?>
@@ -54,5 +70,7 @@
 		</tr>
 		<?php endforeach; ?>
 	</table><br><br>
-	
+	<?php 
+		echo "<div id='button'>".$this->Html->link('Crear', array('controller' => 'proposals', 'action' => 'add'))."</div>"
+	?>
 </div>		
