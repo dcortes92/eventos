@@ -151,8 +151,6 @@ class UsersController extends AppController{
             throw new NotFoundException(__('Usuario incorrecto'));
         }
         if ($this->request->is('post') || $this->request->is('put')) {
-        	$this->request->data['User']['password'] = $temp['User']['password'];
-        	//pr($this->request->data);
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash('Su información se ha actualizado', 'default', array('class' => 'success'));
             }

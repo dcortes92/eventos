@@ -36,7 +36,8 @@ class User extends AppModel{
                 ),
                 'password' => array(
                                 'rule' => 'notEmpty',
-                                'message' => 'A password is required'
+                                'message' => 'A password is required',
+                                'required' => 'create'
                 )
         );
 
@@ -46,7 +47,8 @@ class User extends AppModel{
         {
                 /*Last parameter is to determine wether to use or not to use salt, salt is an extra piece of data
                   that is appended to the string*/
-                $this->data['User']['password'] = Security::hash( $this->data['User']['password'], 'sha1', true );
+                if(isset($this->data['User']['password']))
+                    $this->data['User']['password'] = Security::hash( $this->data['User']['password'], 'sha1', true );
 
                 return true; //Always necessary
         }

@@ -43,12 +43,12 @@
             </li>
             <li>
                <span>
-                  <?php echo $this->Html->link('Preguntas', array('controller' => 'questions', 'action' => 'index')) ?>
+                  <?php echo $this->Html->link('Preguntas', array('controller' => 'favoritequestions', 'action' => 'index')) ?>
                </span>
             </li>
             <li>
                <span>
-                  <?php echo $this->Html->link('Recursos', array('controller' => 'resources', 'action' => 'index')) ?>
+                  <?php echo $this->Html->link('Recursos', array('controller' => 'favoriteresources', 'action' => 'index')) ?>
                </span>
             </li>
             <li>
