@@ -15,6 +15,32 @@
 			$this->set('questions', $this->Question->find('all'));
 			
 		}
+		
+		public function answer($id = null, $proposal_id){
+			$this->set('title_for_layout','Business Meeting - Editar Pregunta');
+			$this ->layout='admin';
+			if (!$id) {
+				throw new NotFoundException(__('Invalid question'));
+			}
+
+			$question = $this->Question->findById($id);
+			if (!$question) {
+				throw new NotFoundException(__('Invalid question'));
+			}
+
+			if ($this->request->is(array('question', 'put'))) {
+				$this->Question->id = $id;
+				if ($this->Question->save($this->request->data)) {
+					$this->Session->setFlash('El pregunta ha sido respondida.','default',array('class' => 'success'));
+					return $this->redirect(array('action' => 'view', 'controller' => 'proposals', $proposal_id));
+				}
+				$this->Session->setFlash(__('Unable to update your question.'));
+			}
+
+			if (!$this->request->data) {
+				$this->request->data = $question;
+			}
+		}
 		//Pueden verlo administradores y usuarios
 		public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Pregunta');

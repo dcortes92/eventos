@@ -1,34 +1,28 @@
 <div class="inside">
 <br>
-<h2>Fotos</h2>
+<h2>Comentario Favoritos</h2>
 
 <table class='TableResult'>
     <tr>
-        <th>Titulo</th>
-        <th colspan="2">Actions</th>
+        <th>Comentario Favorito</th>
+        <th colspan="1">Actions</th>
     </tr>
 
-<!-- Here's where we loop through our $photos array, printing out post info -->
+<!-- Here's where we loop through our $favoritecomments array, printing out post info -->
 
-    <?php foreach ($photos as $photo): ?>
+    <?php foreach ($favoritecomments as $favoritecomment): ?>
     <tr>
         <td>
-            <?php echo $this->Html->link($photo['Photo']['title'], array('action' => 'view', $photo['Photo']['id'])); ?>
+            <?php echo $favoritecomment['Comment']['comment']; ?>
         </td>
         <td>
             <?php echo $this->Form->postLink(
-                'Borrar',
-                array('action' => 'delete', $photo['Photo']['id']),
+                'Ya no me gusta',
+                array('action' => 'delete', $favoritecomment['Favoritecomment']['id']),
                 array('confirm' => 'Esta seguro?'));
             ?>
 		</td>
-		<td>
-            <?php echo $this->Html->link('Editar', array('action' => 'edit', $photo['Photo']['id'])); ?>
-        </td>
     </tr>
     <?php endforeach; ?>
 
 </table>
-<br>
-<div id="button"><span><?php echo $this->Html->link('Crear Foto', array('action' => 'add')); ?></p></div>
-</div>

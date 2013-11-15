@@ -71,7 +71,7 @@
 			}
 			
 			foreach($resourcesfull as $resource){
-				array_push($resources,$resoruce['resource']);
+				array_push($resources,$resource['link']);
 				array_push($resources_id,$resource['id']);
 				$user_id= $resource['user_id'];
 				$user = $this->Proposal->User->find('all',array('conditions' => array('User.id' =>$user_id)));
@@ -92,6 +92,12 @@
 			$this->set('questions_id',$questions_id);
 			$this->set('questions', $questions);
 			$this->set('largoQuestions',$largoQuestions);
+			
+			$largoResources=count($usernames_resources);
+			$this->set('usernames_resources',$usernames_resources);
+			$this->set('resources',$resources);
+			$this->set('resources_id',$resources_id);
+			$this->set('largoResources',$largoResources);
 		}
 		//Pueden verlo solo administradores
 		 public function add() {

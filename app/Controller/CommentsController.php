@@ -1,7 +1,7 @@
 <?php
 	class CommentsController extends AppController {
 		//Pueden verlo administradores y usuarios
-		public function index() {
+		/*public function index() {
 			$this->set('title_for_layout','Business Meeting - Comentarios');
 			$this ->layout='user';
 			$user_id= $this -> Session -> read("User")['User']['id'];
@@ -14,9 +14,9 @@
 			$this ->layout='admin';
 			$this->set('comments', $this->Comment->find('all'));
 			
-		}
+		}*/
 		//Pueden verlo administradores y usuarios
-		public function view($id = null) {
+		/*public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Comentario');
 			$temp = $this->Session->read('User');
 			if(intval($temp['User']['user_type']) == 1)
@@ -31,7 +31,7 @@
 				throw new NotFoundException(__('Invalid comment'));
 			}
 			$this->set('comment', $comment);
-		}
+		}*/
 		//Pueden verlo todos los usuarios, se accede desde propuestas
 		 public function add($id=null) {
 			$this->set('title_for_layout','Business Meeting - Agregar Comentario');

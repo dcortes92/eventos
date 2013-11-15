@@ -10,7 +10,7 @@
 			$this->set('favoritecomments', $favoritecomments);
 		}
 		//Pueden verlo administradores y usuarios
-		public function view($id = null) {
+		/*public function view($id = null) {
 			$this->set('title_for_layout','Business Meeting - Ver Comentario Favorito');
 			$this ->layout='user';
 			if (!$id) {
@@ -21,7 +21,7 @@
 				throw new NotFoundException(__('Invalid favoritecomment'));
 			}
 			$this->set('favoritecomment', $favoritecomment);
-		}
+		}*/
 		//Pueden verlo solo administradores
 		 public function add($id=null,$id_proposal) {
 			$this->set('title_for_layout','Business Meeting - Agregar Favorito');
@@ -44,14 +44,10 @@
 		}
 	
 		//Pueden verlo solo administradores
-		public function delete($id) {
-			$user_id= $this -> Session -> read("User")['User']['id'];
-			$favoritecomment= $this->Favoritecomment->Find('all',array('conditions' => array('Favoritecomment.user_id' =>$user_id, 'Favoritecomment.comment_id' => $id)));
-			pr($favoritecomment_id);
-			$favoritecomment_id = $favoritecomment[0]['Favoritecomment']['id'];
-			if ($this->Favoritecomment->delete($favoritecomment_id)) {
+		public function delete($id=null) {
+			if ($this->Favoritecomment->delete($id)) {
 				$this->Session->setFlash('La comentario Favorito ha sido borrada.','default',array('class' => 'success'));
-				return $this->redirect(array('action' => 'index', 'controller' => 'comments'));
+				return $this->redirect(array('action' => 'index', 'controller' => 'favoritecomments'));
 			}
 		}
 }

@@ -47,7 +47,7 @@
 				$this->Resource->create();
 				if ($this->Resource->save($this->request->data)) {
 					$this->Session->setFlash('El recurso ha sido creado.','default',array('class' => 'success'));
-					return $this->redirect(array('action' => 'index', 'controller' => 'proposals'));
+					return $this->redirect(array('action' => 'view', 'controller' => 'proposals', $id));
 				}
 				$this->Session->setFlash(__('Unable to add your post.'));
 			}
