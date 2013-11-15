@@ -1,10 +1,10 @@
 <?php
 	class Proposal extends AppModel {
 		public $hasMany = array(
-            'Sesion'
+            'Sesion', 'Comment', 'Question'
         );
 		public $belongsTo = array(
-           'Event'
+           'Event','User'
         );
 		public $validate = array(
 			'name' => array('rule' => 'notEmpty'),

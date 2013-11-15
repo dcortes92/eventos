@@ -4,7 +4,7 @@
 <table class='TableResult'>
     <tr>
         <th>Comentario</th>
-        <th colspan="2">Acciones</th>
+        <th colspan="4">Acciones</th>
     </tr>
 
 <!-- Here's where we loop through our $comments array, printing out post info -->
@@ -23,6 +23,12 @@
 		</td>
 		<td>
             <?php echo $this->Html->link('Editar', array('action' => 'edit', $comment['Comment']['id'])); ?>
+        </td>
+		<td>
+            <?php echo $this->Html->link('Me gusta', array('action' => 'add', 'controller' => 'favoritecomments', $comment['Comment']['id'])); ?>
+        </td>
+		<td>
+            <?php echo $this->Html->link('Ya no me gusta', array('action' => 'delete', 'controller' => 'favoritecomments', $comment['Comment']['id'])); ?>
         </td>
     </tr>
     <?php endforeach; ?>

@@ -6,7 +6,7 @@
 	<table class='TableResult'>
 		<tr>
 			<th>Nombre</th>
-			<th colspan="5">Acciones</th>
+			<th colspan="6">Acciones</th>
 		</tr>
 
 	<!-- Here's where we loop through our $proposals array, printing out post info -->
@@ -46,6 +46,30 @@
 				<?php echo $this->Html->link('Agregar Pregunta', array(
 					'controller' => 'questions',
 					'action' => 'add'
+					, $proposal['Proposal']['id'])); 
+				?>
+
+			</td>
+			<td>
+				<?php echo $this->Html->link('Calificar', array(
+					'controller' => 'reviews',
+					'action' => 'add'
+					, $proposal['Proposal']['id'])); 
+				?>
+
+			</td>
+			<td>
+				<?php echo $this->Html->link('Agregar Ponente', array(
+					'controller' => 'speakers',
+					'action' => 'add'
+					, $proposal['Proposal']['id'])); 
+				?>
+
+			</td>
+			<td>
+				<?php echo $this->Html->link('Eliminar Ponente', array(
+					'controller' => 'speakers',
+					'action' => 'delete'
 					, $proposal['Proposal']['id'])); 
 				?>
 

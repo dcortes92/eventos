@@ -1,5 +1,8 @@
 <?php
 	class Comment extends AppModel {
+		public $hasMany = array(
+            'Favoritecomment'
+        );
 		public $belongsTo = array(
            'Proposal', 'User'
         );

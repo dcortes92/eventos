@@ -47,7 +47,7 @@
 				$this->Comment->create();
 				if ($this->Comment->save($this->request->data)) {
 					$this->Session->setFlash('El comentario ha sido creado.','default',array('class' => 'success'));
-					return $this->redirect(array('action' => 'index', 'controller' => 'proposals'));
+					return $this->redirect(array('action' => 'view', 'controller' => 'proposals',$id));
 				}
 				$this->Session->setFlash(__('Unable to add your post.'));
 			}

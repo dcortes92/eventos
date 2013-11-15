@@ -6,8 +6,8 @@
 			if($type == 1) //Admin
 			{
 				$this->set('title_for_layout','Business Meeting - Salones');
-			$this ->layout='user';
-			$this->set('halls', $this->Hall->find('all'));
+				$this ->layout='user';
+				$this->set('halls', $this->Hall->find('all'));
 			}
 			else if($type==2){
 				$this->redirect(array(
