@@ -63,7 +63,11 @@
             </li>
          </ul>
       </li>
-      <li class='last'><a href='#'><span>Mis Propuestas</span></a></li>
+      <li class='last'>
+         <span>
+            <?php echo $this->Html->link('Mis Propuestas', array('controller' => 'proposals', 'action' => 'mispropuestas')) ?>
+         </span>
+      </li>
       <li class='last'><span><?php echo $this->Html->link('Salir ('.$username.')', array('controller' => 'users', 'action' => 'logout')) ?></span></li>
    </ul>
 </div>

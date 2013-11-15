@@ -103,7 +103,17 @@
 		 public function add() {
 			$user_id= $this -> Session -> read("User")['User']['id'];
 			$this->set('title_for_layout','Business Meeting - Agregar Propuestas');
-			$this ->layout='admin';
+			
+			$type = intval($this->Session->read('User')['User']['user_type']);	
+			if($type == 1) //Admin
+			{
+				$this ->layout = 'admin';
+			}
+			else
+			{
+				$this ->layout = 'user';
+			}
+
 			$events = $this->Proposal->Event->find('list');
 			
             $this->set('events', $events);
@@ -157,6 +167,23 @@
 			}
 		}
 
+		public function mispropuestas()
+		{
+			$this->set('title_for_layout','Business Meeting - Mis Propuestas');
+			$type = intval($this->Session->read('User')['User']['user_type']);	
+			if($type == 1) //Admin
+			{
+				$this ->layout = 'admin';
+			}
+			else
+			{
+				$this ->layout = 'user';
+			}
+			$id = $this->Session->read('User')['User']['id'];
+			$mispropuestas = $this->Proposal->find('all', array('conditions' => array('Proposal.user_id' => $id)));
+			$this->set('mispropuestas', $mispropuestas);
+		}
+
 		/*Privacy*/
 		/*Protected views that only a valid user can access*/
 		public function beforeFilter() {
@@ -175,13 +202,6 @@
 				if(intval($temp['User']['user_type']) == 2) // 2 = Usuario, 1 = Administrador
 				{
 					if($this->request->action == 'delete')
-					{
-						$this->Session->setFlash('No se ha encontrado la página solicitada.');
-						$this->redirect(array('controller' => 'users',
-						'action' => 'uprofile'
-						));	
-					}
-					if($this->request->action == 'add')
 					{
 						$this->Session->setFlash('No se ha encontrado la página solicitada.');
 						$this->redirect(array('controller' => 'users',

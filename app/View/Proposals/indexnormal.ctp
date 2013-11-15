@@ -19,7 +19,7 @@
 				<?php 
 					$reviews = $proposal['Review'];
 					$count = count($reviews);
-					
+
 					if ($count == 0) {
 						$count = 1;
 					}
@@ -70,5 +70,7 @@
 		</tr>
 		<?php endforeach; ?>
 	</table><br><br>
-	
+	<?php 
+		echo "<div id='button'>".$this->Html->link('Crear', array('controller' => 'proposals', 'action' => 'add'))."</div>"
+	?>
 </div>		
